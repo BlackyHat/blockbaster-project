@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlockBaster</title>
+    <link rel="stylesheet" href="./sass/index.scss" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Collaboratrs scripts ТУТ ПІДКЛЮЧАЄМО ЧАСТИНИ ІНТЕРФЕЙСУ СТОРІНКИ -->
+        <include src="./partials/lib-header.html"></include>
+
+        <main>
+            <!--  -->
+            <include src="./partials/lib-movie.html"></include>
+            <include src="./partials/pagination.html"></include>
+
+        </main>
+        <!--  -->
+        <include src="./partials/footer.html"></include>
+    </div>
+
+    <!-- Collaboratrs scripts СЮДИ МОЖЕТЕ ВАШІ СКРИПТИ ПІДКЛЮЧАТИ-->
+    <script src="./js/films.js" type="module"></script>
+    <script src="index.js" type="module"></script>
+</body>
+
+</html>
