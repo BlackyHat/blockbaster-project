@@ -1,10 +1,11 @@
 import Pagination from 'tui-pagination';
+import axios from 'axios';
 import { FilmsApiService } from './search-api';
 const filmsApiService = new FilmsApiService();
-console.log(filmsApiService)
-const container = document.querySelector('#tui-pagination-container')
+filmsApiService.getTrendingDataApi()
+const container = document.querySelector('.tui-pagination')
 const options = { 
-     totalItems: 10,
+    totalItems: filmsApiService.getTrendingDataApi().then((response) => response.total_pages),
      itemsPerPage: 10,
      visiblePages: 10,
      page: 1,
