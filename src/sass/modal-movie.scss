@@ -40,7 +40,7 @@ body.show-modal .js-modalMovie__backdrop {
 
 
     width: 280px;
-    max-height: calc(100% - 140px);
+    max-height: calc(100% - 80px);
     // z-index: 102;
 
     background-color: #FFFFFF;
@@ -192,4 +192,31 @@ body.show-modal .js-modalMovie__backdrop {
             color: #FF6B01;
         }
     }
+}
+.average {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $main-white-color;
+    background-color: $accent-color;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $bleak-text;
+        background-color: $main-white-color;
+    }
+
+}
+
+.count {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $bleak-text;
+    background-color: $main-white-color;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $main-white-color;
+        background-color: $accent-color;
+    }
+
 }
