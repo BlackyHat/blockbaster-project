@@ -1,14 +1,12 @@
+
 import Pagination from 'tui-pagination';
-import axios from 'axios';
-import { FilmsApiService } from './search-api';
-const filmsApiService = new FilmsApiService();
-filmsApiService.getTrendingDataApi()
-const container = document.querySelector('.tui-pagination')
-const options = { 
-    totalItems: filmsApiService.getTrendingDataApi().then((response) => response.total_pages),
+export function PagMarkup(page,total_pages){
+    const container = document.querySelector('.tui-pagination');
+    const options = { // below default value of options
+    totalItems: total_pages,
      itemsPerPage: 10,
      visiblePages: 10,
-     page: 1,
+     page: page,
      centerAlign: false,
      firstItemClassName: 'tui-first-child',
      lastItemClassName: 'tui-last-child',
@@ -28,5 +26,8 @@ const options = {
                  '<span class="tui-ico-ellip">...</span>' +
              '</a>'
      }
-};
-const pagination = new Pagination(container, options);
+    };
+    const pagination = new Pagination(container, options);
+   
+    return pagination
+}
