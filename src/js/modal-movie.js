@@ -6,8 +6,8 @@ const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 
 const refs = {
-    openModalMovieCard: document.querySelector('[data-modalMovie-open]'),
-    closeModalMovieBtn: document.querySelector('[data-modalMovie-close]'),
+    openModalMovieCard: document.querySelector('[modal-movie-open]'),
+    closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
     backdrop: document.querySelector('.js-modalMovie__backdrop'),
     
     targetMovie: document.querySelector('.movie__gallery'),
