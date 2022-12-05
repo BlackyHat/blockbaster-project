@@ -36,7 +36,7 @@ function createMarkup(data) {
         });
       });
 
-      return `<li class="gallery__item" id="${el.id}">
+      return `<li class="gallery__item" id="${el.id}" data-modalMovie-open>
             <a class="film-card"">
                     <img src="https://image.tmdb.org/t/p/w500/${
                       el.poster_path
