@@ -1,53 +1,30 @@
 // GLOBAL STYLES
-$accent-color: #ff6b02;
-$main-white-color: #ffffff;
-$bleak-text: #000000;
-$grey-text: #8C8C8C;
-$main-bg-color: #ffffff;
-$second-bg-color: #f7f7f7;
-$backdrop-bg-color: RGBA(0, 0, 0, 0.25);
+// COLORS
+$color-accent: #ff6b02;
+$color-white: #ffffff;
+$color-black: #000000;
+$color-grey: #8C8C8C;
+$color-grey2: #545454;
+$color-bg: #f7f7f7;
+$color-bg-backdrop: RGBA(0, 0, 0, 0.25);
 
 
 $main-font-family: 'Roboto';
 $main-font-style: normal;
 $main-font-weight: 500;
 
-// FILMS GRID STYLES
-$pc-grid-font-size: 20px;
-$pc-grid-line-height: 1.2;
-$tablet-grid-font-size: 12px;
-$tablet-grid-line-height: 1.33;
-$mobile-grid-font-size: 12px;
-$mobile-grid-line-height: 1.33;
+// FONT SiZE
+$font-size-large: 30px;
+$font-size-big: 20px;
+$font-size-medium: 16px;
+$font-size: 12px;
 
-
-// FILM CARD STYLES
-// PC version
-$pc-card-title-font-size: 30px;
-$pc-card-title-line-height: 1.17;
-$pc-card-small-text-font-size: 12px;
-$pc-card-small-text-line-height: 1.17;
-$pc-card-medium-text-font-size: 12px;
-$pc-card-medium-text-line-height: 1.33;
-$pc-card-about-font-size: 12px;
-$pc-card-about-line-height: 2.17;
-
-// TABLET version
-$tablet-card-title-font-size: 20px;
-$tablet-card-title-line-height: 0.87;
-$tablet-card-small-text-font-size: 12px;
-$tablet-card-small-text-line-height: 1.17;
-$tablet-card-medium-text-font-size: 12px;
-$tablet-card-medium-text-line-height: 1.33;
-$tablet-card-about-font-size: 12px;
-$tablet-card-about-line-height: 1.67;
-
-// MOBILE version
-$mobile-card-title-font-size: 20px;
-$mobile-card-title-line-height: 1.15;
-$mobile-card-small-text-font-size: 12px;
-$mobile-card-small-text-line-height: 1.17;
-$mobile-card-medium-text-font-size: 12px;
-$mobile-card-medium-text-line-height: 1.33;
-$mobile-card-about-font-size: 12px;
-$mobile-card-about-line-height: 1.67;
+// LINE HEIGHT
+$line-height1: 0.87;
+$line-height2: 1.15;
+$line-height3: 1.17;
+$line-height4: 1.19;
+$line-height5: 1.2;
+$line-height6: 1.33;
+$line-height7: 1.67;
+$line-height8: 2.17;
