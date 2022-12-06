@@ -18,13 +18,13 @@ function getTrendMovies() {
       }
       createMarkup(results);
       if (page < total_pages) {
-        options.totalItems = totalPages;
+        options.totalItems = total_pages;
         options.page = page;
 
         const pagination = new Pagination(container, options);
-        pagination.on('afterMove', (event) => {
+        pagination.on('afterMove', function(event) {
         page = event.page;
-        getTrendMovies(page)
+        getTrendMovies()
         
     });
       }
