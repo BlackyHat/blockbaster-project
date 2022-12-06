@@ -111,4 +111,3 @@ function createMovieCardById(item) {
         `;
     refs.modalCard.innerHTML = markup;
 }
-document.querySelector("#\\34 36270")
