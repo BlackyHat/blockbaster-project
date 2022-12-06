@@ -28,7 +28,7 @@ body.show-modal .js-modalMovie__backdrop {
         z-index: 999; //
 
         pointer-events: none;
-        background: RGBA(0, 0, 0, 0.25);
+        background-color: $backdrop-bg-color;
 
         visibility: hidden;
         transition: opacity 0.5s, visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1); //--
@@ -40,10 +40,10 @@ body.show-modal .js-modalMovie__backdrop {
 
 
     width: 280px;
-    max-height: calc(100% - 140px);
+    max-height: calc(100% - 80px);
     // z-index: 102;
 
-    background-color: #FFFFFF;
+    background-color: $main-white-color;
     pointer-events: none;
     overflow-y: scroll;
 
@@ -68,9 +68,9 @@ body.show-modal .js-modalMovie__backdrop {
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: #FF6B01;
+        background-color: $accent-color2;
         border-radius: 10px;
-        border: 1px solid #FF6B01;
+        border: 1px solid $accent-color2;
     }
 
     &__container {
@@ -92,48 +92,44 @@ body.show-modal .js-modalMovie__backdrop {
     &__about--title {
         margin-top: 20px;
         margin-bottom: 20px;
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 23px;
-        font-style: normal;
+        font-size: $mobile-card-title-font-size;
+        font-weight: $main-font-weight;
+        line-height: $mobile-card-title-line-height;
         text-transform: uppercase;
     }
 
     &__table-menu {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
-        color: #8C8C8C;
+        font-size: $mobile-card-about-font-size;
+        line-height: $mobile-card-medium-text-line-height;
+        color: $grey-text;
         width: 108px;
         vertical-align: middle;
+        &:not(:last-child) {
+                margin-bottom: 8px;
+        }
     }
 
     &__table-data {
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 14px;
+        font-size: $mobile-card-about-font-size;
+        line-height: $mobile-card-medium-text-line-height;
         text-transform: uppercase;
-        color: #000000;
+        color: $bleak-text;
     }
 
     &__about--subtitle {
         margin-top: 20px;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
+        font-size: $mobile-card-medium-text-font-size;
+        line-height: $mobile-card-medium-text-line-height;
         text-transform: uppercase;
-        color: #000000;
+        color: $bleak-text;
         margin-bottom: 8px;
     }
 
     &__about--discription {
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
+        font-size: $tablet-card-about-font-size;
         line-height: 20px;
-        color: #000000;
-        margin-bottom: 20px;
+        color: $bleak-text;
+        margin-bottom: $tablet-card-about-line-height;
     }
 }
 
@@ -151,22 +147,21 @@ body.show-modal .js-modalMovie__backdrop {
 
         border: 1px solid #000000;
         border-radius: 5px;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 16px;
+        font-size: $mobile-card-medium-text-font-size;
+        line-height: $mobile-card-medium-text-line-height;
 
         display: flex;
         align-items: center;
         text-align: center;
         text-transform: uppercase;
-        color: #000000;
+        color: $bleak-text;
         cursor: pointer;
 
         &:hover,
         &:focus {
-            background-color: #FF6B01;
+            background-color: $accent-color2;
             border: none;
-            color: #FFFFFF;
+            color: $main-white-color;
         }
     }
 
@@ -189,7 +184,34 @@ body.show-modal .js-modalMovie__backdrop {
 
         &:hover,
         &:focus {
-            color: #FF6B01;
+            color: $accent-color2;
         }
     }
+}
+.average {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $main-white-color;
+    background-color: $accent-color2;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $bleak-text;
+        background-color: $main-white-color;
+    }
+
+}
+
+.count {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $bleak-text;
+    background-color: $main-white-color;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $main-white-color;
+        background-color: $accent-color2;
+    }
+
 }

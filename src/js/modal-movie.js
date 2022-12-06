@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
+import { FilmsApiService } from './search-api';
 
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
@@ -44,47 +45,33 @@ function onEscPress(e) {
 // Create movieCard
 
 function createMovieCard(e) {
-  // if (e.target.closest('li.movie__gallery--items'));
-  const idMovie = e.target.closest('li');
-  console.log(idMovie.id);
-  MovieApiById(idMovie.id);
-  // createMovieCardById(idMovie);
+    // if (e.target.closest('li.movie__gallery--items'));
+    const idMovie = e.target.closest('li');
+    console.log(idMovie.id);
+    
+    MovieApiById(idMovie.id);
+    // createMovieCardById(idMovie);
 }
 
 async function MovieApiById(id) {
-  try {
-    const movieInfo = await axios.get(
-      `${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`
-    );
-    console.log(movieInfo.data);
-    createMovieCardById(movieInfo);
-  } catch (error) {
-    console.log(error.message);
-  }
+   
+    try {
+        const movieInfo = await axios.get(`${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`);
+        // console.log(movieInfo.data);
+        createMovieCardById(movieInfo)
+    } catch (error) {
+      console.log(error);
+    }
 }
 
 function createMovieCardById(item) {
-  const {
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    original_title,
-    genre_ids,
-    overview,
-  } = item.data;
-  console.log({
-    poster_path,
-    title,
-    vote_average,
-    vote_count,
-    popularity,
-    original_title,
-    genre_ids,
-    overview,
-  });
-  const markup = `
+    const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview } = item.data;
+    console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
+    // 
+    console.log(genres);
+
+    const markup = `
+
         <div class="movie__poster">
                 <picture class="movie__poster--img">
                     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt=${title} class="movie-poster__img" />
@@ -95,11 +82,11 @@ function createMovieCardById(item) {
                 <table>
                     <tr>
                         <td class="movie__table-menu">Vote / Votes</td>
-                        <td class="movie__table-data">${vote_average} / ${vote_count}</td>
+                        <td class="movie__table-data"><span class="average">${vote_average.toFixed(1)}</span> / <span class="count">${Math.round(vote_count)}</span></td>
                     </tr>
                     <tr>
-                        <td class="movie__table-menu">Popularity</td>
-                        <td class="movie__table-data">${popularity}</td>
+                        <td class="movie__table-menu">Popularity</td> 
+                        <td class="movie__table-data">${popularity.toFixed(1)}</td>
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Original Title</td>
