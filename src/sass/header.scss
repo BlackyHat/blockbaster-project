@@ -102,7 +102,32 @@
         font-size: 12px;
         line-height: 14px;
 }
+.site-nav_link--current {
+    position: relative;
+    color: var(--accent-color);
 
+    @media screen and (min-width: 768px) {
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            border-radius: 2px;
+            background-color: var(--accent-color);
+        }
+    }
+}
+.search__input {
+    background-color: inherit;
+}
+.search__box {
+    display: flex;
+}
+.search__button {
+    background-color: inherit;
+}
 .library__nav {
     display: flex;
 }
