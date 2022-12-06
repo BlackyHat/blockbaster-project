@@ -2,19 +2,17 @@ import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { FilmsApiService } from './search-api';
 
-
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 
 const refs = {
-    openModalMovieCard: document.querySelector('[modal-movie-open]'),
-    closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
-    backdrop: document.querySelector('.js-modalMovie__backdrop'),
-    
-    targetMovie: document.querySelector('.movie__gallery'),
-    modalCard: document.querySelector('.modalMovie__container'),
-}
+  openModalMovieCard: document.querySelector('[modal-movie-open]'),
+  closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
+  backdrop: document.querySelector('.js-modalMovie__backdrop'),
 
+  targetMovie: document.querySelector('.movie__gallery'),
+  modalCard: document.querySelector('.modalMovie__container'),
+};
 
 refs.openModalMovieCard.addEventListener('click', onModalMovieOpen);
 refs.closeModalMovieBtn.addEventListener('click', onModalMovieClose);
@@ -23,28 +21,29 @@ refs.targetMovie.addEventListener('click', createMovieCard);
 
 // Open/Close Modal
 function onModalMovieOpen() {
-    document.body.classList.add('show-modal');
-    window.addEventListener('keydown', onEscPress);
+  document.body.classList.add('show-modal');
+  window.addEventListener('keydown', onEscPress);
 }
 
 function onModalMovieClose() {
-    document.body.classList.remove('show-modal');
-    window.removeEventListener('keydown', onEscPress);
-    
+  document.body.classList.remove('show-modal');
+  window.removeEventListener('keydown', onEscPress);
 }
 
 function onBackdropClose(e) {
+
     if (e.currentTarget === e.target) {
         // document.body.classList.remove('show-modal')
         onModalMovieClose();
     }
 }    
 
+
 function onEscPress(e) {
-    // console.log(e.code);
-    if (e.code === 'Escape') {
-        onModalMovieClose();
-    }
+  // console.log(e.code);
+  if (e.code === 'Escape') {
+    onModalMovieClose();
+  }
 }
 // Create movieCard
 
@@ -75,6 +74,7 @@ function createMovieCardById(item) {
     // console.log(genres);
 
     const markup = `
+
         <div class="movie__poster">
                 <picture class="movie__poster--img">
                     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt=${title} class="movie-poster__img" />
@@ -110,5 +110,5 @@ function createMovieCardById(item) {
                 </div>
             </div>
         `;
-    refs.modalCard.innerHTML = markup;
+  refs.modalCard.innerHTML = markup;
 }
