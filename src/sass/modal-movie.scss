@@ -1,0 +1,217 @@
+body.show-modal .modalMovie {
+    visibility: visible;
+    pointer-events: initial;
+    transform: scale(1);
+
+}
+
+body.show-modal .js-modalMovie__backdrop {
+    visibility: visible;
+
+}
+
+.modal__close-button {
+    cursor: pointer;
+}
+
+.modalMovie {
+
+    &__backdrop {
+        // display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed; //
+        top: 0; //
+        left: 0; //
+        width: 100%; //
+        height: 100%; //
+        z-index: 999; //
+
+        pointer-events: none;
+        background-color: $backdrop-bg-color;
+
+        visibility: hidden;
+        transition: opacity 0.5s, visibility 0.5s cubic-bezier(0.4, 0, 0.2, 1); //--
+    }
+
+    position: fixed;
+    top: 40px;
+    left: calc((100% - 280px) / 2);
+
+
+    width: 280px;
+    max-height: calc(100% - 80px);
+    // z-index: 102;
+
+    background-color: $main-white-color;
+    pointer-events: none;
+    overflow-y: scroll;
+
+    transform: scale(1.1);
+    transition: transform 200ms ease-in-out;
+
+
+    // @media screen and (min-width: 768px) {
+    //     width: 704px;
+    // }
+
+    // @media screen and (min-width: 1024px) {
+    //     width: 806px;
+    // }
+
+    &::-webkit-scrollbar {
+        width: 1px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $accent-color2;
+        border-radius: 10px;
+        border: 1px solid $accent-color2;
+    }
+
+    &__container {
+
+        padding: 48px 20px 40px 20px;
+
+    }
+
+
+}
+
+.movie {
+    &__poster {
+        width: 240px;
+        height: 357px;
+        justify-content: center;
+    }
+
+    &__about--title {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: $mobile-card-title-font-size;
+        font-weight: $main-font-weight;
+        line-height: $mobile-card-title-line-height;
+        text-transform: uppercase;
+    }
+
+    &__table-menu {
+        font-size: $mobile-card-about-font-size;
+        line-height: $mobile-card-medium-text-line-height;
+        color: $grey-text;
+        width: 108px;
+        vertical-align: middle;
+        &:not(:last-child) {
+                margin-bottom: 8px;
+        }
+    }
+
+    &__table-data {
+        font-size: $mobile-card-about-font-size;
+        line-height: $mobile-card-medium-text-line-height;
+        text-transform: uppercase;
+        color: $bleak-text;
+    }
+
+    &__about--subtitle {
+        margin-top: 20px;
+        font-size: $mobile-card-medium-text-font-size;
+        line-height: $mobile-card-medium-text-line-height;
+        text-transform: uppercase;
+        color: $bleak-text;
+        margin-bottom: 8px;
+    }
+
+    &__about--discription {
+        font-size: $tablet-card-about-font-size;
+        line-height: 20px;
+        color: $bleak-text;
+        margin-bottom: $tablet-card-about-line-height;
+    }
+}
+
+.modal {
+    &__buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px
+    }
+
+    &__button {
+        width: 110px;
+        height: 44px;
+
+
+        border: 1px solid #000000;
+        border-radius: 5px;
+        font-size: $mobile-card-medium-text-font-size;
+        line-height: $mobile-card-medium-text-line-height;
+
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+        color: $bleak-text;
+        cursor: pointer;
+
+        &:hover,
+        &:focus {
+            background-color: $accent-color2;
+            border: none;
+            color: $main-white-color;
+        }
+    }
+
+    &__close-button {
+        top: 8px;
+        right: 8px;
+        position: fixed;
+        padding: 0;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        cursor: pointer;
+        z-index: 1;
+
+
+        &:hover,
+        &:focus {
+            color: $accent-color2;
+        }
+    }
+}
+.average {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $main-white-color;
+    background-color: $accent-color2;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $bleak-text;
+        background-color: $main-white-color;
+    }
+
+}
+
+.count {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: $bleak-text;
+    background-color: $main-white-color;
+    border-radius: 5px;
+    &:hover,
+    &:focus {
+        color: $main-white-color;
+        background-color: $accent-color2;
+    }
+
+}
