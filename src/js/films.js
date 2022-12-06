@@ -1,5 +1,5 @@
 import { FilmsApiService } from './search-api';
-
+import { PagMarkup } from './pagination';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -14,6 +14,7 @@ function getTrendMovies() {
         throw new Error();
       }
       createMarkup(results);
+      PagMarkup(page, total_pages)
     })
     .catch(error => {
       console.log(error);
