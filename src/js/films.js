@@ -1,19 +1,33 @@
 import { FilmsApiService } from './search-api';
-import { PagMarkup } from './pagination';
+import Pagination from 'tui-pagination';
+import { container } from './pagination';
+import { options } from './pagination';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
 };
+
 getTrendMovies();
 function getTrendMovies() {
   filmsApiService
     .getTrendingDataApi()
     .then(({ page, results, total_results, total_pages }) => {
+      let totalPages = total_pages
       if (!total_results) {
         throw new Error();
       }
-      PagMarkup(page, total_pages)
       createMarkup(results);
+      if (page < total_pages) {
+        options.totalItems = totalPages;
+        options.page = page;
+
+        const pagination = new Pagination(container, options);
+        pagination.on('afterMove', (event) => {
+        page = event.page;
+        getTrendMovies(page)
+        
+    });
+      }
     })
     .catch(error => {
       console.log(error);
