@@ -28,6 +28,10 @@ export function PagMarkup(page,total_pages){
      }
     };
     const pagination = new Pagination(container, options);
-   
+    pagination.on('afterMove', (event) => {
+    const currentPage = event.page;
+     console.log(currentPage);
+    });
+
     return pagination
 }
