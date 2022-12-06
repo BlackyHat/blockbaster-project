@@ -31,10 +31,13 @@ function onModalMovieClose() {
 }
 
 function onBackdropClose(e) {
-  console.log('click');
-  console.log(e.currentTarget);
-  console.log(e.target);
-}
+
+    if (e.currentTarget === e.target) {
+        // document.body.classList.remove('show-modal')
+        onModalMovieClose();
+    }
+}    
+
 
 function onEscPress(e) {
   // console.log(e.code);
@@ -47,7 +50,7 @@ function onEscPress(e) {
 function createMovieCard(e) {
     // if (e.target.closest('li.movie__gallery--items'));
     const idMovie = e.target.closest('li');
-    console.log(idMovie.id);
+    // console.log(idMovie.id);
     
     MovieApiById(idMovie.id);
     // createMovieCardById(idMovie);
@@ -66,9 +69,9 @@ async function MovieApiById(id) {
 
 function createMovieCardById(item) {
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview } = item.data;
-    console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
+    // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
     // 
-    console.log(genres);
+    // console.log(genres);
 
     const markup = `
 
@@ -82,11 +85,11 @@ function createMovieCardById(item) {
                 <table>
                     <tr>
                         <td class="movie__table-menu">Vote / Votes</td>
-                        <td class="movie__table-data"><span class="average">${vote_average.toFixed(1)}</span> / <span class="count">${Math.round(vote_count)}</span></td>
+                        <td class="movie__table-number"><span class="average">${vote_average.toFixed(1)}</span> / <span class="count">${Math.round(vote_count)}</span></td>
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Popularity</td> 
-                        <td class="movie__table-data">${popularity.toFixed(1)}</td>
+                        <td class="movie__table-number">${popularity.toFixed(1)}</td>
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Original Title</td>
