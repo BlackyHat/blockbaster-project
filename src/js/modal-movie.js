@@ -1,19 +1,17 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 
-
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 
 const refs = {
-    openModalMovieCard: document.querySelector('[modal-movie-open]'),
-    closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
-    backdrop: document.querySelector('.js-modalMovie__backdrop'),
-    
-    targetMovie: document.querySelector('.movie__gallery'),
-    modalCard: document.querySelector('.modalMovie__container'),
-}
+  openModalMovieCard: document.querySelector('[modal-movie-open]'),
+  closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
+  backdrop: document.querySelector('.js-modalMovie__backdrop'),
 
+  targetMovie: document.querySelector('.movie__gallery'),
+  modalCard: document.querySelector('.modalMovie__container'),
+};
 
 refs.openModalMovieCard.addEventListener('click', onModalMovieOpen);
 refs.closeModalMovieBtn.addEventListener('click', onModalMovieClose);
@@ -22,53 +20,71 @@ refs.targetMovie.addEventListener('click', createMovieCard);
 
 // Open/Close Modal
 function onModalMovieOpen() {
-    document.body.classList.add('show-modal');
-    window.addEventListener('keydown', onEscPress);
+  document.body.classList.add('show-modal');
+  window.addEventListener('keydown', onEscPress);
 }
 
 function onModalMovieClose() {
-    document.body.classList.remove('show-modal');
-    window.removeEventListener('keydown', onEscPress);
-    
+  document.body.classList.remove('show-modal');
+  window.removeEventListener('keydown', onEscPress);
 }
 
 function onBackdropClose(e) {
-    console.log("click");
-    console.log(e.currentTarget);
-    console.log(e.target);
-}    
+  console.log('click');
+  console.log(e.currentTarget);
+  console.log(e.target);
+}
 
 function onEscPress(e) {
-    // console.log(e.code);
-    if (e.code === 'Escape') {
-        onModalMovieClose();
-    }
+  // console.log(e.code);
+  if (e.code === 'Escape') {
+    onModalMovieClose();
+  }
 }
 // Create movieCard
 
 function createMovieCard(e) {
-    // if (e.target.closest('li.movie__gallery--items'));
-    const idMovie = e.target.closest('li');
-    console.log(idMovie.id);
-    MovieApiById(idMovie.id);
-    // createMovieCardById(idMovie);
+  // if (e.target.closest('li.movie__gallery--items'));
+  const idMovie = e.target.closest('li');
+  console.log(idMovie.id);
+  MovieApiById(idMovie.id);
+  // createMovieCardById(idMovie);
 }
 
 async function MovieApiById(id) {
-  
-    try {
-        const movieInfo = await axios.get(`${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`);
-        console.log(movieInfo.data);
-        createMovieCardById(movieInfo)
-    } catch (error) {
-      console.log(error.message);
-    }
+  try {
+    const movieInfo = await axios.get(
+      `${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`
+    );
+    console.log(movieInfo.data);
+    createMovieCardById(movieInfo);
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 function createMovieCardById(item) {
-    const { poster_path, title, vote_average, vote_count, popularity, original_title, genre_ids, overview } = item.data;
-    console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genre_ids, overview });
-    const markup = `
+  const {
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genre_ids,
+    overview,
+  } = item.data;
+  console.log({
+    poster_path,
+    title,
+    vote_average,
+    vote_count,
+    popularity,
+    original_title,
+    genre_ids,
+    overview,
+  });
+  const markup = `
         <div class="movie__poster">
                 <picture class="movie__poster--img">
                     <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt=${title} class="movie-poster__img" />
@@ -104,5 +120,5 @@ function createMovieCardById(item) {
                 </div>
             </div>
         `;
-    refs.modalCard.innerHTML = markup;
+  refs.modalCard.innerHTML = markup;
 }
