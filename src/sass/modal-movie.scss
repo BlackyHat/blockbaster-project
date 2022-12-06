@@ -60,6 +60,7 @@ body.show-modal .js-modalMovie__backdrop {
     @media screen and (min-width: 768px) {
         width: 704px;
         top: 219px;
+        // max-height: calc(100% - 420px);
         left: calc((100% - 704px) / 2);
     }
 
@@ -168,6 +169,10 @@ body.show-modal .js-modalMovie__backdrop {
         line-height: $mobile-card-medium-text-line-height;
         text-transform: uppercase;
         color: $bleak-text;
+    }
+    &__table-genres{
+        font-size: $mobile-card-about-font-size;
+        line-height: $mobile-card-medium-text-line-height;
     }
     &__table-number {
         font-size: $mobile-card-about-font-size;

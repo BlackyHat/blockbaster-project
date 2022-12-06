@@ -5,6 +5,7 @@ import { FilmsApiService } from './search-api';
 
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
+const URL_FOR_IMG = 'https://image.tmdb.org/t/p/w500/';
 
 const refs = {
     openModalMovieCard: document.querySelector('[modal-movie-open]'),
@@ -72,12 +73,12 @@ function createMovieCardById(item) {
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview } = item.data;
     // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
     // 
-    // console.log(genres);
+    console.log(genres);
 
     const markup = `
         <div class="movie__poster">
                 <picture class="movie__poster--img">
-                    <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt=${title} class="movie-poster__img" />
+                    <img src="${URL_FOR_IMG}${poster_path}" alt=${title} class="movie-poster__img" />
                 </picture>
             </div>
             <div class="movie__about">
@@ -97,7 +98,7 @@ function createMovieCardById(item) {
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Genre</td>
-                        <td class="movie__table-data">${genre_ids} исправить</td>
+                        <td class="movie__table-genres">${genres[0].name}</td>
                     </tr>
                 </table>
                 <div>
