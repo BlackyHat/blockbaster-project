@@ -3,10 +3,10 @@ import Pagination from 'tui-pagination';
 export function PagMarkup(page,total_pages){
     const container = document.querySelector('.tui-pagination');
     const options = { // below default value of options
-    totalItems: total_pages,
+    totalItems: `${total_pages}`,
      itemsPerPage: 10,
      visiblePages: 10,
-     page: page,
+        page: `${page}`,
      centerAlign: false,
      firstItemClassName: 'tui-first-child',
      lastItemClassName: 'tui-last-child',
@@ -29,6 +29,8 @@ export function PagMarkup(page,total_pages){
     };
     const pagination = new Pagination(container, options);
     pagination.on('afterMove', (event) => {
+       
+    console.log(page)
     const currentPage = event.page;
      console.log(currentPage);
     });

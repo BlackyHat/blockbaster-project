@@ -4,7 +4,6 @@ const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
 };
-
 getTrendMovies();
 function getTrendMovies() {
   filmsApiService
@@ -13,8 +12,8 @@ function getTrendMovies() {
       if (!total_results) {
         throw new Error();
       }
-      createMarkup(results);
       PagMarkup(page, total_pages)
+      createMarkup(results);
     })
     .catch(error => {
       console.log(error);
