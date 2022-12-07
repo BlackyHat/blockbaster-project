@@ -39,14 +39,14 @@
     right: 8px;
     width: 30px;
     height: 30px;
-    background-color: #fff;
+    background-color: $color-white;
     border: 1px solid rgba(0,0,0,.1);
     border-radius: 15px;
     cursor: pointer;
-    color: $bleak-text;
+    color: $color-black;
 
     &:hover {
-        color: $accent-color;
+        color: $color-accent;
     }
 }
 
@@ -85,37 +85,37 @@
     text-transform: uppercase;
 
     @include for-phone {
-        font-size: $mobile-card-medium-text-font-size;   
-        line-height: $mobile-card-medium-text-line-height;
+        font-size: $font-size;   
+        line-height: $line-height6;
     }
         
     @include for-tablet {
-        font-size: $tablet-card-medium-text-font-size;
-        line-height: $tablet-card-medium-text-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
     }
         
     @include for-desktop {
-        font-size: $pc-card-medium-text-font-size;
-        line-height: $pc-card-medium-text-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
     }
 
 }
 
 .student__position {
     // margin-top: 5px;
-    color: $accent-color;
+    color: $color-accent;
     @include for-phone {
-        font-size: $mobile-card-about-font-size;   
-        line-height: $mobile-card-about-line-height;
+        font-size: $font-size;   
+        line-height: $line-height6;
     }
         
     @include for-tablet {
-        font-size: $tablet-card-about-font-size;
-        line-height: $tablet-card-about-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
     }
         
     @include for-desktop {
-        font-size: $pc-card-about-font-size;
-        line-height: $pc-card-about-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
     }
 }
