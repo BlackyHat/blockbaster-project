@@ -1,7 +1,6 @@
 body.show-modal .modalMovie {
     visibility: visible;
-    // z-index: 999;
-    // opacity: 1;
+
     pointer-events: initial;
     transform: scale(1);
 }
@@ -9,7 +8,7 @@ body.show-modal .modalMovie {
 body.show-modal .js-modalMovie__backdrop {
     visibility: visible;
     pointer-events: initial;
-    // opacity: 1;
+
 }
 
 .modal__close-button {
@@ -19,7 +18,6 @@ body.show-modal .js-modalMovie__backdrop {
 .modalMovie {
 
     &__backdrop {
-        // display: flex;
         justify-content: center;
         align-items: center;
         position: fixed; //
@@ -30,8 +28,7 @@ body.show-modal .js-modalMovie__backdrop {
         z-index: 999;
 
         pointer-events: none;
-        // background-color: aqua;
-        background-color: $backdrop-bg-color;
+        background-color: $color-bg-backdrop;
 
        
         visibility: hidden;
@@ -49,7 +46,7 @@ body.show-modal .js-modalMovie__backdrop {
     font-weight: $main-font-weight;
     font-style: $main-font-style;
 
-    background-color: $main-white-color;
+    background-color: $color-white;
     pointer-events: none;
     overflow-y: scroll;
 
@@ -59,18 +56,20 @@ body.show-modal .js-modalMovie__backdrop {
 
     @media screen and (min-width: 768px) {
         width: 704px;
-        top: 219px;
+        top: 100px;
         left: calc((100% - 704px) / 2);
+        max-height: calc(100% - 200px);
     }
 
     @media screen and (min-width: 1024px) {
         width: 806px;
-        top: 150px;
+        top: 100px;
         left: calc((100% - 806px) / 2);
+        max-height: calc(100% - 200px);
     }
 
     &::-webkit-scrollbar {
-        width: 1px;
+        width: 4px;
     }
 
     &::-webkit-scrollbar-track {
@@ -78,9 +77,9 @@ body.show-modal .js-modalMovie__backdrop {
     }
 
     &::-webkit-scrollbar-thumb {
-        background-color: $accent-color;
+        background-color: $color-accent;
         border-radius: 10px;
-        border: 1px solid $accent-color;
+        border: 1px solid $color-accent;
     }
 
     &__container {
@@ -135,24 +134,23 @@ body.show-modal .js-modalMovie__backdrop {
     &__about--title {
         margin-top: 20px;
         margin-bottom: 20px;
-        font-size: $mobile-card-title-font-size;
-        line-height: $mobile-card-title-line-height;
+        font-size: $font-size-big;
+        line-height: $line-height2;
         text-transform: uppercase;
         @media screen and (min-width: 768px) {
             margin-top: 0;
-            font-size: $tablet-card-title-font-size;
-            line-height: $tablet-card-small-text-line-height;
+            
         }
         @media screen and (min-width: 1024px) {
-            font-size: $pc-card-title-font-size;
-            line-height: $pc-card-title-line-height;
+            font-size: $font-size-large;
+            line-height: $line-height3;
         }
     }
 
     &__table-menu {
-        font-size: $mobile-card-about-font-size;
-        line-height: $mobile-card-medium-text-line-height;
-        color: $grey-text;
+        font-size: $font-size;
+        line-height: $line-height6;
+        color: $color-grey;
         width: 108px;
         vertical-align: middle;
         &:not(:last-child) {
@@ -164,31 +162,36 @@ body.show-modal .js-modalMovie__backdrop {
     }
 
     &__table-data {
-        font-size: $mobile-card-about-font-size;
-        line-height: $mobile-card-medium-text-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
         text-transform: uppercase;
-        color: $bleak-text;
+        color: $color-black;
+    }
+    &__table-genres {
+        font-size: $font-size;
+        line-height: $line-height6;
+        color: $color-black;
     }
     &__table-number {
-        font-size: $mobile-card-about-font-size;
-        line-height: $mobile-card-about-line-height;
+        font-size: $font-size;
+        line-height: $line-height3;
         text-transform: uppercase;
 
     }
 
     &__about--subtitle {
         margin-top: 20px;
-        font-size: $mobile-card-medium-text-font-size;
-        line-height: $mobile-card-medium-text-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
         text-transform: uppercase;
-        color: $bleak-text;
+        color: $color-black;
         margin-bottom: 8px;
     }
 
     &__about--discription {
-        font-size: $mobile-card-about-font-size;
-        line-height: $mobile-card-about-line-height;
-        color: $bleak-text;
+        font-size: $font-size;
+        line-height: $line-height7;
+        color: $color-black;
         margin-bottom: 20px
     }
 }
@@ -212,15 +215,15 @@ body.show-modal .js-modalMovie__backdrop {
 
         padding-left: 8px;
         padding-right: 8px;
-        border: 1px solid $bleak-text;
+        border: 1px solid $color-black;
         border-radius: 5px;
-        font-size: $mobile-card-medium-text-font-size;
-        line-height: $mobile-card-medium-text-line-height;
+        font-size: $font-size;
+        line-height: $line-height6;
 
         align-items: center;
         text-align: center;
         text-transform: uppercase;
-        color: $bleak-text;
+        color: $color-black;
         cursor: pointer;
 
         @media screen and (min-width: 768px) {
@@ -233,9 +236,9 @@ body.show-modal .js-modalMovie__backdrop {
 
         &:hover,
         &:focus {
-            background-color: $accent-color;
+            background-color: $color-accent;
             border: none;
-            color: $main-white-color;
+            color: $color-white;
         }
 
     }
@@ -259,26 +262,26 @@ body.show-modal .js-modalMovie__backdrop {
 
         &:hover .modal__icon-close,
         &:focus .modal__icon-close{
-            fill: $accent-color;
+            fill: $color-accent;
         }
 
     }
     &__icon-close {
         width: 16px;
         height: 16px;
-        fill: $bleak-text;
+        fill: $color-black;
     }
 }
 .average {
     border-radius: 5px;
     padding-left: 8px;
     padding-right: 8px;
-    color: $main-white-color;
-    background-color: $accent-color;
+    color: $color-white;
+    background-color: $color-accent;
     &:hover,
     &:focus {
-        color: $bleak-text;
-        background-color: $main-white-color;
+        color: $color-black;
+        background-color: $color-white;
     }
 }
 
@@ -286,11 +289,11 @@ body.show-modal .js-modalMovie__backdrop {
     border-radius: 5px;
     padding-left: 8px;
     padding-right: 8px;
-    color: $bleak-text;
-    background-color: $main-white-color;
+    color: $color-black;
+    background-color: $color-white;
     &:hover,
     &:focus {
-        color: $main-white-color;
-        background-color: $accent-color;
+        color: $color-white;
+        background-color: $color-accent;
     }
 }
