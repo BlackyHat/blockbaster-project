@@ -51,7 +51,7 @@ link,
 img {
   display: block;
   max-width: 100%;
-  height: auto;
+  max-height: inherit;
 }
 address {
   font-style: normal;
@@ -67,7 +67,7 @@ section {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin-right: auto;
   margin-left: auto;
   text-align: center;
