@@ -10,16 +10,51 @@
         transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.backdrop.is-hidden {
+    opacity: 0;
+    transform: scale(3);
+    pointer-events: none;
+}
+
 .modal {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: auto;
+    max-height: 90%;
     padding: 40px;
     border-radius: 4px;
     background-color: #fff;
     box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+
+    font-family: $main-font-family;
+    font-style: $main-font-style;
+    font-weight: $main-font-weight;
+}
+
+.modal__close  {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 15px;
+    cursor: pointer;
+    color: $bleak-text;
+
+    &:hover {
+        color: $accent-color;
+    }
+}
+
+.modal__close-icon {
+    width: 11px;
+    height: 11px;
+    fill: currentColor;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .students {
@@ -31,13 +66,56 @@
 }
 
 .student__photo {
-    width: 395px;
+    @include for-phone {
+        width: 80px;
+    }
+        
+    @include for-tablet {
+        width: 36px;
+    }
+        
+    @include for-desktop {
+        width: 95px;
+    }
 }
 
 .student__name {
     margin-top: 10px;
+    // font: inherit;
+    text-transform: uppercase;
+
+    @include for-phone {
+        font-size: $mobile-card-medium-text-font-size;   
+        line-height: $mobile-card-medium-text-line-height;
+    }
+        
+    @include for-tablet {
+        font-size: $tablet-card-medium-text-font-size;
+        line-height: $tablet-card-medium-text-line-height;
+    }
+        
+    @include for-desktop {
+        font-size: $pc-card-medium-text-font-size;
+        line-height: $pc-card-medium-text-line-height;
+    }
+
 }
 
 .student__position {
-    margin-top: 5px;
+    // margin-top: 5px;
+    color: $accent-color;
+    @include for-phone {
+        font-size: $mobile-card-about-font-size;   
+        line-height: $mobile-card-about-line-height;
+    }
+        
+    @include for-tablet {
+        font-size: $tablet-card-about-font-size;
+        line-height: $tablet-card-about-line-height;
+    }
+        
+    @include for-desktop {
+        font-size: $pc-card-about-font-size;
+        line-height: $pc-card-about-line-height;
+    }
 }
