@@ -6,25 +6,27 @@ const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
 };
+let pagePag = 1;
 
-getTrendMovies();
-function getTrendMovies() {
+function getTrendMovies(pagePag) {
   filmsApiService
-    .getTrendingDataApi()
-    .then(({ page, results, total_results, total_pages }) => {
+    .getTrendingDataApi(pagePag)
+    .then(({ results, total_results, total_pages }) => {
       let totalPages = total_pages
       if (!total_results) {
         throw new Error();
       }
       createMarkup(results);
-      if (page < total_pages) {
-        options.totalItems = total_pages;
-        options.page = page;
-
+      
+      if (pagePag < totalPages) {
+        options.totalItems = totalPages;
+        options.page = pagePag;
+        console.log(options)
         const pagination = new Pagination(container, options);
-        pagination.on('afterMove', function(event) {
-        page = event.page;
-        getTrendMovies()
+        pagination.on('afterMove', function (event) {
+          pagePag = event.page;
+          getTrendMovies(pagePag)
+          
         
     });
       }
@@ -33,7 +35,7 @@ function getTrendMovies() {
       console.log(error);
     });
 }
-
+getTrendMovies(pagePag);
 function createMarkup(data) {
   const markup = data
     .map(el => {
