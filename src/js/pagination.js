@@ -2,7 +2,7 @@ export const container = document.querySelector('.tui-pagination');
 export const options = { // below default value of options
     totalItems: 20,
      itemsPerPage: 10,
-     visiblePages: 10,
+     visiblePages: 5,
     page: 1,
      centerAlign: false,
      firstItemClassName: 'tui-first-child',
