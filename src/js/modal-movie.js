@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
+import { hidePreloder, showPreloder } from './preloder.js';
 
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
@@ -58,11 +59,14 @@ function createMovieCard(e) {
 
 async function MovieApiById(id) {
     try {
+        showPreloder();
         const movieInfo = await axios.get(`${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`);
         // console.log(movieInfo.data);
         createMovieCardById(movieInfo)
+        hidePreloder();
     } catch (error) {
       console.log(error);
+      hidePreloder();
     }
 }
 
