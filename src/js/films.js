@@ -1,5 +1,7 @@
 import { FilmsApiService } from './search-api';
-import { PagMarkup } from './pagination';
+import Pagination from 'tui-pagination';
+import { container } from './pagination';
+import { options } from './pagination';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -10,11 +12,22 @@ function getTrendMovies() {
   filmsApiService
     .getTrendingDataApi()
     .then(({ page, results, total_results, total_pages }) => {
+      let totalPages = total_pages
       if (!total_results) {
         throw new Error();
       }
       createMarkup(results);
-      PagMarkup(page, total_pages)
+      if (page < total_pages) {
+        options.totalItems = total_pages;
+        options.page = page;
+
+        const pagination = new Pagination(container, options);
+        pagination.on('afterMove', function(event) {
+        page = event.page;
+        getTrendMovies()
+        
+    });
+      }
     })
     .catch(error => {
       console.log(error);

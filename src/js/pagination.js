@@ -1,12 +1,9 @@
-
-import Pagination from 'tui-pagination';
-export function PagMarkup(page,total_pages){
-    const container = document.querySelector('.tui-pagination');
-    const options = { // below default value of options
-    totalItems: total_pages,
+export  const container = document.querySelector('.tui-pagination');
+export const options = { // below default value of options
+    totalItems: 20,
      itemsPerPage: 10,
      visiblePages: 10,
-     page: page,
+    page: 2,
      centerAlign: false,
      firstItemClassName: 'tui-first-child',
      lastItemClassName: 'tui-last-child',
@@ -27,7 +24,6 @@ export function PagMarkup(page,total_pages){
              '</a>'
      }
     };
-    const pagination = new Pagination(container, options);
-   
-    return pagination
-}
+    
+
+
