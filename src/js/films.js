@@ -2,6 +2,7 @@ import { FilmsApiService } from './search-api';
 import Pagination from 'tui-pagination';
 import { container } from './pagination';
 import { options } from './pagination';
+import { hidePreloder, showPreloder } from './preloder';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -9,6 +10,7 @@ const refs = {
 let pagePag = 1;
 
 function getTrendMovies(pagePag) {
+  showPreloder();
   filmsApiService
     .getTrendingDataApi(pagePag)
     .then(({ results, total_results, total_pages }) => {
@@ -30,8 +32,10 @@ function getTrendMovies(pagePag) {
         
     });
       }
+      hidePreloder();
     })
     .catch(error => {
+      hidePreloder();
       console.log(error);
     });
 }
