@@ -1,47 +1,77 @@
 import axios from 'axios';
-import { KEY } from './consts/api_key';
-import { modalBackdrop } from './modal-movie';
-const getMoviesTrailer = async key => {
-    const { data } = await axios.get(`/movie/${key}/videos?api_key=${KEY}`);
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
-    return data.results.filter(item => {
-        if (item.site === 'YouTube') {
-            return item;
-        }
-    });
-};
+const API_KEYS = '174cdfa11f0283dda9735618fe57e2fe';
 
-export const movieTrailer = async keyId => {
-    let movie = '';
-    await getMoviesTrailer(keyId).then(
-        r => (movie = `https://www.youtube.com/embed/${r[0].key}`))
-        .catch(error => movie = false)
-
-    return movie;
-};
-export async function trailerMarkup(event) {
-    const movieId = Number(event.target.getAttribute('key'))
-    const trailerBtn = document.querySelector('.button-trailer')
-    trailerBtn.setAttribute('disabled', true)
-
-    await movieTrailer(movieId).then(r => {
-        if (r) {
-            modalBackdrop.firstElementChild.insertAdjacentHTML('beforeend',
-                `<iframe id="ytplayer" type="text/html" width="782" height="360"
-      src="${r}"
-      frameborder="0"/>`)
-            document.querySelector('#ytplayer').scrollIntoView({ block: "center", behavior: "smooth" })
-        }
-        else {
-            modalBackdrop.firstElementChild.insertAdjacentHTML('beforeend',
-                `<div class="trailer-placeholder"></div>`)
-            document.querySelector('.trailer-placeholder').scrollIntoView({ block: "center", behavior: "smooth" })
-        }
-    })
+// Функція створення слухачів подій на elementRef, яка викликається в movie-cards і modal.js і по кліку запускає drawModalForTrailler.
+trailer.addEventListener('click', createTrailerLink );
+function createTrailerLink(elementRef) {
+    const trailerBtn = elementRef;
+    trailerBtn.forEach(el =>
+        el.addEventListener('click', onClickDrawTrailer)
+    )
 }
 
-export function trailerBtnListener(key) {
-    const trailerBtn = document.querySelector('.button-trailer')
-    trailerBtn.setAttribute('key', key)
-    trailerBtn.addEventListener('click', trailerMarkup)
+function onClickDrawTrailer(event) {
+    drawModalForTrailler(event.target.dataset.id)
 }
+
+// Функція запиту на сервер трейлеру фільму по id. 
+
+async function drawModalForTrailler(id_film) {
+    try {
+        const response = await axios.get(
+            `https://api.themoviedb.org/3/movie/${id_film}/videos?api_key=${API_KEYS}`,
+            {
+                params: {
+                    api_key: API_KEYS,
+                },
+            }
+        );
+
+        const data = response.data.results;
+
+        if (data.length === 0 || data === undefined) {
+            alert('Sorry, trailer not found.');
+            return;
+        }
+
+        // Пошук з масиву обєктів відео саме трейлера до фільму.
+
+        let objectTrailer = data.find(obj => obj.name.split(" ").includes('Trailer'))
+
+        if (objectTrailer === undefined) {
+            objectTrailer = data[0];
+        }
+
+        const key = objectTrailer.key;
+
+        // Створення модалки iframe через бібліотеку basiclightbox.
+
+        const instance = basicLightbox.create(`
+    <div class="modal">
+    <iframe width="100%" height="315" src='https://www.youtube.com/embed/${key}'frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  `);
+        instance.show();
+
+        // Закриття модалки по Escape
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                instance.close();
+            }
+
+        });
+    } catch (error) {
+        const instance = basicLightbox.create(`
+      <div class="modal">
+        <iframe width="100%" height="315" src='http://www.youtube.com/embed/zwBpUdZ0lrQ' frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>`);
+
+        instance.show();
+    }
+}
+
+export default { createTrailerLink };
