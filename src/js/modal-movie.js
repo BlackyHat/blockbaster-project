@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { hidePreloder, showPreloder } from './preloder.js';
-
+//
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 const URL_GET_IMG = 'https://image.tmdb.org/t/p/w500/';

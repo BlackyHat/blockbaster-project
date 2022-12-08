@@ -324,6 +324,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  transition: background-color linear 250ms;
 
     color: #FFFFFF;
     box-sizing: border-box;
@@ -344,10 +345,7 @@
 
 .library__nav-btn:hover {
   background-color: #ff6b01;
-}
-
-.movie {
-  position: relative;
+  border-color: #ff6b01 ;
 }
 
 .footer {
