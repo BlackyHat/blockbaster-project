@@ -6,28 +6,28 @@ const GET_MOVIE_INFO = '/movie/';
 const URL_GET_IMG = 'https://image.tmdb.org/t/p/w500/';
 
 const refs = {
-  openModalMovieCard: document.querySelector('[modal-movie-open]'),
-  closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
-  backdrop: document.querySelector('.js-modalMovie__backdrop'),
+    openModalMovieCard: document.querySelector('[modal-movie-open]'),
+    closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
+    backdrop: document.querySelector('.js-modalMovie__backdrop'),
 
-  targetMovie: document.querySelector('.movie__gallery'),
-  modalCard: document.querySelector('.modalMovie__container'),
+    targetMovie: document.querySelector('.movie__gallery'),
+    modalCard: document.querySelector('.modalMovie__container'),
 };
 
 refs.openModalMovieCard.addEventListener('click', onModalMovieOpen);
 refs.closeModalMovieBtn.addEventListener('click', onModalMovieClose);
-refs.backdrop.addEventListener('click', onBackdropClose); 
+refs.backdrop.addEventListener('click', onBackdropClose);
 refs.targetMovie.addEventListener('click', createMovieCard);
 
 // Open/Close Modal
 function onModalMovieOpen() {
-  document.body.classList.add('show-modal');
-  window.addEventListener('keydown', onEscPress);
+    document.body.classList.add('show-modal');
+    window.addEventListener('keydown', onEscPress);
 }
 
 function onModalMovieClose() {
-  document.body.classList.remove('show-modal');
-  window.removeEventListener('keydown', onEscPress);
+    document.body.classList.remove('show-modal');
+    window.removeEventListener('keydown', onEscPress);
 }
 
 function onBackdropClose(e) {
@@ -36,14 +36,13 @@ function onBackdropClose(e) {
         // document.body.classList.remove('show-modal')
         onModalMovieClose();
     }
-}    
-
+}
 
 function onEscPress(e) {
-  // console.log(e.code);
-  if (e.code === 'Escape') {
-    onModalMovieClose();
-  }
+    // console.log(e.code);
+    if (e.code === 'Escape') {
+        onModalMovieClose();
+    }
 }
 // Create movieCard
 
@@ -51,7 +50,7 @@ function createMovieCard(e) {
     // if (e.target.closest('li.movie__gallery--items'));
     const idMovie = e.target.closest('li');
     // console.log(idMovie.id);
-    
+
     MovieApiById(idMovie.id);
     // createMovieCardById(idMovie);
 }
@@ -62,7 +61,7 @@ async function MovieApiById(id) {
         // console.log(movieInfo.data);
         createMovieCardById(movieInfo)
     } catch (error) {
-      console.log(error);
+        console.log(error);
     }
 }
 
@@ -102,8 +101,9 @@ function createMovieCardById(item) {
                 <div class="modal__buttons">
                     <button class="modal__button button-watched" type="button">add to Watched</button>
                     <button class="modal__button button-queue" type="button">add to queue</button>
+                    <button class="modal__button button-trailer" type="button">Watched trailer</button>
                 </div>
             </div>
         `;
-  refs.modalCard.innerHTML = markup;
+    refs.modalCard.innerHTML = markup;
 }
