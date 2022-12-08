@@ -13,22 +13,20 @@ function getTrendMovies(pagePag) {
   filmsApiService
     .getTrendingDataApi(pagePag)
     .then(({ results, total_results, total_pages }) => {
-      let totalPages = total_pages
+      let totalPages = total_pages;
       if (!total_results) {
         throw new Error();
       }
       createMarkup(results);
-      
+
       if (pagePag < totalPages) {
         options.totalItems = totalPages;
         options.page = pagePag;
         const pagination = new Pagination(container, options);
         pagination.on('afterMove', function (event) {
           pagePag = event.page;
-          getTrendMovies(pagePag)
-          
-        
-    });
+          getTrendMovies(pagePag);
+        });
       }
       hidePreloder();
     })
@@ -43,7 +41,7 @@ function createMarkup(data) {
     .map(el => {
       //
       const date = new Date(el.release_date);
-      const genres_ids = [];
+      let genres_ids = [];
       //
       el.genre_ids.forEach(el => {
         const arr = filmsApiService.genres_ids_array.genres;
@@ -53,6 +51,7 @@ function createMarkup(data) {
           }
         });
       });
+      genres_ids = genres_ids.slice(0, 3);
 
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
@@ -65,8 +64,7 @@ function createMarkup(data) {
 
                   <p class="info__genres">
                   ${genres_ids.join(', ')} | ${date.getFullYear()} 
-                  <span class="info__rating">
-                  ${el.vote_average.toFixed(1)}</span>
+        
                </p>
             </div>
             </a>
