@@ -1,12 +1,14 @@
 // movie gallery container for cards
 
-.container{
-    margin-top: 216px;
-    min-height: 2200px;
+.section-movie {
+    margin-top: 230px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      position: relative;
+
+    @media screen and(min-width: 1024px) {
+        margin-top: 216px;
+
+    }
 
 }
 
@@ -29,9 +31,7 @@ ul.movie__gallery{
         }
             
     @media screen and(min-width: 1024px) {
-        width: 1280px;
-        min-height: 2000px;
-      
+        width: 1280px;      
     }
 }
 

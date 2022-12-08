@@ -8,7 +8,6 @@ const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
 };
 let pagePag = 1;
-
 function getTrendMovies(pagePag) {
   showPreloder();
   filmsApiService
@@ -23,7 +22,6 @@ function getTrendMovies(pagePag) {
       if (pagePag < totalPages) {
         options.totalItems = totalPages;
         options.page = pagePag;
-        console.log(options)
         const pagination = new Pagination(container, options);
         pagination.on('afterMove', function (event) {
           pagePag = event.page;

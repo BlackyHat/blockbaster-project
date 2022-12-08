@@ -1,5 +1,5 @@
 export const container = document.querySelector('.tui-pagination');
-export const options = { // below default value of options
+export const options = {
     totalItems: 20,
      itemsPerPage: 10,
      visiblePages: 5,
