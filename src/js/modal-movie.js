@@ -75,13 +75,15 @@ async function MovieApiById(id) {
 }
 // =====================================================================================================================================
 function getMoviesFromLocalStorage() {
-    const saveDB = localStorage.getItem("watched");
-    const parsDB = JSON.parse(saveDB);
-    if (parsDB === null) {
+    //watched
+    const saveWatched = localStorage.getItem("watched");
+    const parsWatched = JSON.parse(saveWatched);
+    
+    if (parsWatched === null) {
         return
     }
     else {
-        watchedDb = parsDB;  
+        watchedDb = parsWatched;  
     }
 }
 
@@ -162,7 +164,7 @@ function createMovieCardById(item) {
                     <p class="modal__about--discription">${overview}</p>
                 </div>
                 <div class="modal__buttons">
-                    <button class="modal__button button-watched" type="button">add to watched</button>
+                    <button class="modal__button button-watched" type="button">${changeTextButton()}</button>
                     <button class="modal__button button-queue" type="button">add to queue</button>
                 </div>
             </div>
@@ -202,16 +204,17 @@ function clickOnWatched(e) {
 }
 
 
-// function chengeTextButton () {
-//     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
-//     let textButton = ''
-//     if (!chekMovieId2) {
-//         textButton = 'Remove From Watched'
-//     } else {
-//         textButton = 'Add To Watched'
-//     }
-//     return textButton;
-// }
+function changeTextButton () {
+    const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
+    let textButton = ''
+    if (!chekMovieId2) {
+        
+        textButton = 'Add To Watched'
+    } else {
+        textButton = 'Remove From Watched' 
+    }
+    return textButton;
+}
 
 // function chengeBgColorButton () {
 //     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
