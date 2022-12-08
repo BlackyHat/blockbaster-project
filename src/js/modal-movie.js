@@ -6,6 +6,11 @@ const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 const URL_GET_IMG = 'https://image.tmdb.org/t/p/w500/';
 
+ //movie ID
+// let movieForLocalStorage = {
+
+// }
+
 const refs = {
   openModalMovieCard: document.querySelector('[modal-movie-open]'),
   closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
@@ -13,7 +18,11 @@ const refs = {
 
   targetMovie: document.querySelector('.movie__gallery'),
   modalCard: document.querySelector('.modalMovie__container'),
+
+  // addToWatched: document.querySelector('.button-watched'),
+  // addToQueue: document.querySelector('.button-queue')
 };
+
 
 refs.openModalMovieCard.addEventListener('click', onModalMovieOpen);
 refs.closeModalMovieBtn.addEventListener('click', onModalMovieClose);
@@ -51,7 +60,7 @@ function onEscPress(e) {
 function createMovieCard(e) {
     // if (e.target.closest('li.movie__gallery--items'));
     const idMovie = e.target.closest('li');
-    // console.log(idMovie.id);
+    console.log(idMovie.id);
     
     MovieApiById(idMovie.id);
     // createMovieCardById(idMovie);
@@ -69,10 +78,47 @@ async function MovieApiById(id) {
       hidePreloder();
     }
 }
+// =====================================================================================================================================
+const saveDB = localStorage.getItem("watched");
+const parsDB = JSON.parse(saveDB);
+let watchedDb = parsDB;
+function addToWatched(obj) {
+    
+    watchedDb.push(obj);
+
+    localStorage.setItem("watched", JSON.stringify(watchedDb))
+}
+let QueuedDb = [];
+function addToQueue(obj) {
+
+    QueueDb.push(obj);
+
+    localStorage.setItem("watched", JSON.stringify(watchedDb))
+}
+
+
 
 function createMovieCardById(item) {
-    const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview } = item.data;
+    const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview, id, release_date } = item.data;
     // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
+    // Movie data for local storage
+    const movieData = {
+        poster_path,
+        title,
+        vote_average,
+        vote_count,
+        popularity,
+        original_title,
+        genre_ids,
+        overview,
+        id,
+        release_date,
+  }
+  
+  currentMovie = movieData;
+    // console.log(movieData);
+    
+   
     const markup = `
         <div class="movie__poster">
                 <picture class="movie__poster--img">
@@ -110,4 +156,16 @@ function createMovieCardById(item) {
             </div>
         `;
   refs.modalCard.innerHTML = markup;
+  //  ==================================================================================================================
+  const addToWatchedRef = document.querySelector('.button-watched')
+  const addToQueueRef = document.querySelector('.button-queue')
+  addToWatchedRef.addEventListener('click', clickOnWatched)
+}
+
+let currentMovie = {};
+function clickOnWatched(e) {
+
+console.log(currentMovie);
+     
+  addToWatched(currentMovie)
 }
