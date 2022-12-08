@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { createMarkup } from './films';
+import { hidePreloder, showPreloder } from './preloder.js';
 //CONSTANTS
 const URL = 'https://api.themoviedb.org/3';
 const GET_TRENDING = '/trending/movie/week';
@@ -56,11 +57,13 @@ function searchInput(e) {
 
 async function searchMovieByQuery(q) {
   try {
+    showPreloder();
     const findMovieArray = await axios.get(
       `${URL_SEARCH_MOVIE}?api_key=${API_KEY_TMDb}&language=en-US&query=${q}&page=1&include_adult=false`
     );
-    createMarkup(findMovieArray.data.results);
 
+    createMarkup(findMovieArray.data.results);
+    hidePreloder();
     if (findMovieArray.data.results.length < 1) {
       text.style.visibility = 'inherit';
     }
