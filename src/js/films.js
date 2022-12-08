@@ -38,7 +38,7 @@ function getTrendMovies(pagePag) {
     });
 }
 getTrendMovies(pagePag);
-function createMarkup(data) {
+export function createMarkup(data) {
   const markup = data
     .map(el => {
       //

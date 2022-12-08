@@ -1,44 +1,50 @@
 <header class="header">
-    <div class="container">
-        <div class="header__wrap">
-            <div class="header__container">
-                <div class="header__logo-container">
-                    <a href="" class="header__logo">
-                        <svg class="header__logo-icon" width="24px" height="24px">
-                            <use href="/src/img/sprite.svg#icon-film"></use>
-                        </svg>
-                    </a>
-                    <a href="/src/index.html" class="logo">Filmoteka</a>
-                </div>
-                
-                <nav class="header__nav">
-                    <ul class="header__site-nav">
-                        <li class="header__item">
-                            <a class="header__link underline" href="./index.html">
-                                HOME
-                            </a>
-                        </li>
-                        <li class="header__item">
-                            <a class="header__link" href="./library.html">
-                                MY LIBRARY
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+  <div class="container">
+    <div class="header__wrap">
+      <div class="header__container">
+        <div class="header__logo-container">
+          <a href="" class="header__logo">
+            <svg class="header__logo-icon" width="24px" height="24px">
+              <use href="/src/img/sprite.svg#icon-film"></use>
+            </svg>
+          </a>
+          <a href="/src/index.html" class="logo">Filmoteka</a>
         </div>
-        <div class="search__inner">
-            <form class="search__box">
-                <input class="search__input" id="search__query" name="search__query" placeholder="Movie search">
-                <button class="search__button button" type="submit">
-                        <svg class="search__icon" aria-hidden="true" width="12px" height="12px">
-                                <use href="/src/img/sprite.svg#icon-search"></use>
-                            </svg>
-                    </button>
-                <p class="form__text">
-                    Search result not successful. Enter the correct movie name.
-                </p>
-            </form>
-        </div>
+
+        <nav class="header__nav">
+          <ul class="header__site-nav">
+            <li class="header__item">
+              <a class="header__link underline" href="./index.html"> HOME </a>
+            </li>
+            <li class="header__item">
+              <a class="header__link" href="./library.html"> MY LIBRARY </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
+    <div class="search__inner">
+      <form class="search__box">
+        <input
+          class="search__input"
+          id="search__query"
+          name="search__query"
+          placeholder="Movie search"
+        />
+        <button class="search__button button" type="submit">
+          <svg
+            class="search__icon"
+            aria-hidden="true"
+            width="12px"
+            height="12px"
+          >
+            <use href="/src/img/sprite.svg#icon-search"></use>
+          </svg>
+        </button>
+        <p class="form__text">
+          Search result not successful. Enter the correct movie name.
+        </p>
+      </form>
+    </div>
+  </div>
 </header>
