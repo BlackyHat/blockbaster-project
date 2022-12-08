@@ -7,8 +7,8 @@ const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
 };
-let pagePag = 1;
-function getTrendMovies(pagePag) {
+
+export function getTrendMovies(pagePag = 1) {
   showPreloder();
   filmsApiService
     .getTrendingDataApi(pagePag)
@@ -35,23 +35,27 @@ function getTrendMovies(pagePag) {
       console.log(error);
     });
 }
-getTrendMovies(pagePag);
-function createMarkup(data) {
+
+export function createMarkup(data) {
   const markup = data
     .map(el => {
       //
       const date = new Date(el.release_date);
       let genres_ids = [];
       //
-      el.genre_ids.forEach(el => {
-        const arr = filmsApiService.genres_ids_array.genres;
-        arr.forEach(({ id, name }) => {
-          if (id === el) {
-            genres_ids.push(name);
-          }
+      if (!el.genres) {
+        el.genre_ids.forEach(el => {
+          const arr = filmsApiService.genres_ids_array.genres;
+          arr.forEach(({ id, name }) => {
+            if (id === el) {
+              genres_ids.push(name);
+            }
+          });
         });
-      });
-      genres_ids = genres_ids.slice(0, 3);
+        genres_ids = genres_ids.slice(0, 3);
+      } else {
+        genres_ids = el.genres.map(({name}) => name);
+      }
 
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
