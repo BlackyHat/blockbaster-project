@@ -85,11 +85,23 @@ function getMoviesFromLocalStorage() {
     else {
         watchedDb = parsWatched;  
     }
+
+    //Queued
+    const saveQueue = localStorage.getItem("queue");
+    const parsQueue = JSON.parse(saveQueue);
+    
+    if (parsQueue === null) {
+        return
+    }
+    else {
+        queueDb = parsQueue;  
+    }
 }
 
 let watchedDb = [];
+let queueDb = [];
 getMoviesFromLocalStorage();
-
+// add to watched
 function addToWatched(obj) {
     
     watchedDb.push(obj);
@@ -102,12 +114,19 @@ function removeFromWatched(index) {
 
     localStorage.setItem("watched", JSON.stringify(watchedDb))
 }
-let queuedDb = [];
+// add to Queue
 function addToQueue(obj) {
 
     queueDb.push(obj);
 
-    localStorage.setItem("watched", JSON.stringify(watchedDb))
+    localStorage.setItem("queue", JSON.stringify(queueDb))
+}
+
+function removeFromQueue(index) {
+    
+    queueDb.splice(index, 1);
+
+    localStorage.setItem("queue", JSON.stringify(queueDb))
 }
 
 
@@ -164,29 +183,39 @@ function createMovieCardById(item) {
                     <p class="modal__about--discription">${overview}</p>
                 </div>
                 <div class="modal__buttons">
-                    <button class="modal__button button-watched" type="button">${changeTextButton()}</button>
-                    <button class="modal__button button-queue" type="button">add to queue</button>
+                    <button class="modal__button button-watched" type="button">${changeTextButtonWatched()}</button>
+                    <button class="modal__button button-queue" type="button">${changeTextButtonQueue()}</button>
                 </div>
             </div>
         `;
   refs.modalCard.innerHTML = markup;
   //  ==================================================================================================================
   
-  const addToWatchedRef = document.querySelector('.button-watched')
-  const addToQueueRef = document.querySelector('.button-queue')
-    addToWatchedRef.addEventListener('click', clickOnWatched)
-    
+    const addToWatchedRef = document.querySelector('.button-watched');
+    const addToQueueRef = document.querySelector('.button-queue');
+    addToWatchedRef.addEventListener('click', clickOnWatched);
+    addToQueueRef.addEventListener('click', clickOnQueue)
+    function changeBgColorButton() {
+        const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
+        if (!chekMovieId2) {
+            addToWatchedRef.classList.remove("modal__button--watched");
+        } else {
+            addToWatchedRef.classList.add("modal__button--watched");
+        }
+        const chekMovieId1 = queueDb.some(movie => movie.id === currentMovie.id);
+        if (!chekMovieId1) {
+            addToQueueRef.classList.remove("modal__button--watched");
+        } else {
+            addToQueueRef.classList.add("modal__button--watched");
+        }
+    }
+    changeBgColorButton()
 // =====================================================================================================================
 }
 // ============================================================================================
 let currentMovie = {};
 function clickOnWatched(e) {
-  
-
     const chekMovieId = watchedDb.some(movie => movie.id === currentMovie.id);
-    
-    
-
    if (!chekMovieId) {
     addToWatched(currentMovie)
     e.target.textContent = 'Remove From Watched'
@@ -196,15 +225,23 @@ function clickOnWatched(e) {
     e.target.textContent = 'Add To Watched'
     
    }
-
-
-// console.log(currentMovie);
+}
+function clickOnQueue(e) {
+    const chekMovieId = queueDb.some(movie => movie.id === currentMovie.id);
+    if (!chekMovieId) {
+        addToQueue(currentMovie)
+        e.target.textContent = 'Remove From Queue'
+        
+    } else {
+        const findIndex = queueDb.findIndex(movie => movie.id === currentMovie.id);
+        removeFromQueue(findIndex)
+        e.target.textContent = 'Add To Queue'
+        
      
-
+    } 
 }
 
-
-function changeTextButton () {
+function changeTextButtonWatched() {
     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
     let textButton = ''
     if (!chekMovieId2) {
@@ -216,14 +253,18 @@ function changeTextButton () {
     return textButton;
 }
 
-// function chengeBgColorButton () {
-//     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
-//     if (!chekMovieId2) {
-//         addToWatchedRef.style.backgroundColor = '#FF0000'
-//     } else {
-//         addToWatchedRef.style.backgroundColor = '#C0C0C0'
-//     }
-// }
+function changeTextButtonQueue() {
+    const chekMovieId2 = queueDb.some(movie => movie.id === currentMovie.id);
+    let textButton = ''
+    if (!chekMovieId2) {
+        
+        textButton = 'Add To Queue'
+    } else {
+        textButton = 'Remove From Queue' 
+    }
+    return textButton;
+}
+
 
 
 

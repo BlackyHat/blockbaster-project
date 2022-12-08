@@ -240,6 +240,11 @@ body.show-modal .js-modalMovie__backdrop {
             border: none;
             color: $color-white;
         }
+        &--watched {
+            background-color: $color-accent;
+            border: none;
+            color: $color-white;
+        }
 
     }
 
