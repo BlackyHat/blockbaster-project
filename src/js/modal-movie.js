@@ -101,7 +101,9 @@ function createMovieCardById(item) {
                 <div class="modal__buttons">
                     <button class="modal__button button-watched" type="button">add to Watched</button>
                     <button class="modal__button button-queue" type="button">add to queue</button>
-                    <button class="modal__button trailer" type="button">Watch trailer</button>
+                    <button class="modal__button trailer" type="submit" id="submit">Trailer</button>
+
+                    
                 </div>
             </div>
         `;
