@@ -6,10 +6,7 @@ const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
 const URL_GET_IMG = 'https://image.tmdb.org/t/p/w500/';
 
- //movie ID
-// let movieForLocalStorage = {
 
-// }
 
 const refs = {
   openModalMovieCard: document.querySelector('[modal-movie-open]'),
@@ -19,8 +16,6 @@ const refs = {
   targetMovie: document.querySelector('.movie__gallery'),
   modalCard: document.querySelector('.modalMovie__container'),
 
-  // addToWatched: document.querySelector('.button-watched'),
-  // addToQueue: document.querySelector('.button-queue')
 };
 
 
@@ -79,25 +74,42 @@ async function MovieApiById(id) {
     }
 }
 // =====================================================================================================================================
-const saveDB = localStorage.getItem("watched");
-const parsDB = JSON.parse(saveDB);
-let watchedDb = parsDB;
+function getMoviesFromLocalStorage() {
+    const saveDB = localStorage.getItem("watched");
+    const parsDB = JSON.parse(saveDB);
+    if (parsDB === null) {
+        return
+    }
+    else {
+        watchedDb = parsDB;  
+    }
+}
+
+let watchedDb = [];
+getMoviesFromLocalStorage();
+
 function addToWatched(obj) {
     
     watchedDb.push(obj);
 
     localStorage.setItem("watched", JSON.stringify(watchedDb))
 }
-let QueuedDb = [];
+function removeFromWatched(index) {
+    
+    watchedDb.splice(index, 1);
+
+    localStorage.setItem("watched", JSON.stringify(watchedDb))
+}
+let queuedDb = [];
 function addToQueue(obj) {
 
-    QueueDb.push(obj);
+    queueDb.push(obj);
 
     localStorage.setItem("watched", JSON.stringify(watchedDb))
 }
 
 
-
+// ==============================================================================================================================
 function createMovieCardById(item) {
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview, id, release_date } = item.data;
     // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
@@ -150,22 +162,68 @@ function createMovieCardById(item) {
                     <p class="modal__about--discription">${overview}</p>
                 </div>
                 <div class="modal__buttons">
-                    <button class="modal__button button-watched" type="button">add to Watched</button>
+                    <button class="modal__button button-watched" type="button">add to watched</button>
                     <button class="modal__button button-queue" type="button">add to queue</button>
                 </div>
             </div>
         `;
   refs.modalCard.innerHTML = markup;
   //  ==================================================================================================================
+  
   const addToWatchedRef = document.querySelector('.button-watched')
   const addToQueueRef = document.querySelector('.button-queue')
-  addToWatchedRef.addEventListener('click', clickOnWatched)
+    addToWatchedRef.addEventListener('click', clickOnWatched)
+    
+// =====================================================================================================================
 }
-
+// ============================================================================================
 let currentMovie = {};
 function clickOnWatched(e) {
+  
 
-console.log(currentMovie);
+    const chekMovieId = watchedDb.some(movie => movie.id === currentMovie.id);
+    
+    
+
+   if (!chekMovieId) {
+    addToWatched(currentMovie)
+    e.target.textContent = 'Remove From Watched'
+   } else {
+    const findIndex = watchedDb.findIndex(movie => movie.id === currentMovie.id);
+    removeFromWatched(findIndex)
+    e.target.textContent = 'Add To Watched'
+    
+   }
+
+
+// console.log(currentMovie);
      
-  addToWatched(currentMovie)
+
 }
+
+
+// function chengeTextButton () {
+//     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
+//     let textButton = ''
+//     if (!chekMovieId2) {
+//         textButton = 'Remove From Watched'
+//     } else {
+//         textButton = 'Add To Watched'
+//     }
+//     return textButton;
+// }
+
+// function chengeBgColorButton () {
+//     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
+//     if (!chekMovieId2) {
+//         addToWatchedRef.style.backgroundColor = '#FF0000'
+//     } else {
+//         addToWatchedRef.style.backgroundColor = '#C0C0C0'
+//     }
+// }
+
+
+
+
+
+// =========================================================================================================================
