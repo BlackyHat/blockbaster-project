@@ -13,10 +13,11 @@ export class FilmsApiService {
     this.movieId = '';
   }
 
-  async getTrendingDataApi() {
+  async getTrendingDataApi(pagePag) {
     try {
       const searchParams = new URLSearchParams({
         api_key: API_KEY_TMDb,
+        page: pagePag,
         language: 'en',
       });
       const url = `${URL}${GET_TRENDING}?${searchParams}`;

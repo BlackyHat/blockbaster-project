@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
-import { FilmsApiService } from './search-api';
+import { hidePreloder, showPreloder } from './preloder.js';
 
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
+const URL_GET_IMG = 'https://image.tmdb.org/t/p/w500/';
 
 const refs = {
   openModalMovieCard: document.querySelector('[modal-movie-open]'),
@@ -16,7 +17,7 @@ const refs = {
 
 refs.openModalMovieCard.addEventListener('click', onModalMovieOpen);
 refs.closeModalMovieBtn.addEventListener('click', onModalMovieClose);
-refs.backdrop.addEventListener('click', onBackdropClose); // не работает
+refs.backdrop.addEventListener('click', onBackdropClose); 
 refs.targetMovie.addEventListener('click', createMovieCard);
 
 // Open/Close Modal
@@ -31,10 +32,13 @@ function onModalMovieClose() {
 }
 
 function onBackdropClose(e) {
-  console.log('click');
-  console.log(e.currentTarget);
-  console.log(e.target);
-}
+
+    if (e.currentTarget === e.target) {
+        // document.body.classList.remove('show-modal')
+        onModalMovieClose();
+    }
+}    
+
 
 function onEscPress(e) {
   // console.log(e.code);
@@ -47,34 +51,32 @@ function onEscPress(e) {
 function createMovieCard(e) {
     // if (e.target.closest('li.movie__gallery--items'));
     const idMovie = e.target.closest('li');
-    console.log(idMovie.id);
+    // console.log(idMovie.id);
     
     MovieApiById(idMovie.id);
     // createMovieCardById(idMovie);
 }
 
 async function MovieApiById(id) {
-   
     try {
+        showPreloder();
         const movieInfo = await axios.get(`${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`);
         // console.log(movieInfo.data);
         createMovieCardById(movieInfo)
+        hidePreloder();
     } catch (error) {
       console.log(error);
+      hidePreloder();
     }
 }
 
 function createMovieCardById(item) {
     const { poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview } = item.data;
-    console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
-    // 
-    console.log(genres);
-
+    // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
     const markup = `
-
         <div class="movie__poster">
                 <picture class="movie__poster--img">
-                    <img src="https://image.tmdb.org/t/p/w500/${poster_path}" alt=${title} class="movie-poster__img" />
+                    <img src="${URL_GET_IMG}${poster_path}" alt=${title} class="movie-poster__img" />
                 </picture>
             </div>
             <div class="movie__about">
@@ -82,11 +84,11 @@ function createMovieCardById(item) {
                 <table>
                     <tr>
                         <td class="movie__table-menu">Vote / Votes</td>
-                        <td class="movie__table-data"><span class="average">${vote_average.toFixed(1)}</span> / <span class="count">${Math.round(vote_count)}</span></td>
+                        <td class="movie__table-number"><span class="average">${vote_average.toFixed(1)}</span> / <span class="count">${Math.round(vote_count)}</span></td>
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Popularity</td> 
-                        <td class="movie__table-data">${popularity.toFixed(1)}</td>
+                        <td class="movie__table-number">${popularity.toFixed(1)}</td>
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Original Title</td>
@@ -94,7 +96,7 @@ function createMovieCardById(item) {
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Genre</td>
-                        <td class="movie__table-data">${genre_ids} исправить</td>
+                        <td class="movie__table-genres">${genres[0].name}</td>
                     </tr>
                 </table>
                 <div>
