@@ -5,9 +5,16 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 const API_KEYS = '174cdfa11f0283dda9735618fe57e2fe';
 
 // Функція створення слухачів подій на elementRef, яка викликається в modal-movie.js і по кліку запускає drawModalForTrailler.
-trailer.addEventListener('click', createTrailerLink );
+export function addListener(id) {
+    trailerBtn = document.querySelector(`.trailer`);
+    if (trailerBtn) {
+        trailerBtn.addEventListener("click", createTrailerLink, { once: true });
+    }
+}
+
 function createTrailerLink(elementRef) {
     const trailerBtn = elementRef;
+
     trailerBtn.forEach(el =>
         el.addEventListener('click', onClickDrawTrailer)
     )
