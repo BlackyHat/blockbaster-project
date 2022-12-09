@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { createMarkup } from './films';
 import { hidePreloder, showPreloder } from './preloder.js';
+import { scrollToTop } from './scrollToTop';
 import Pagination from 'tui-pagination';
 import { container } from './pagination';
 import { options } from './pagination';
@@ -50,14 +51,12 @@ export class FilmsApiService {
 const form = document.querySelector('.search__box');
 const text = document.querySelector('.form__text');
 form.addEventListener('submit', searchInput);
-
-// form.addEventListener('submit', searchSubmit);
-// function searchSubmit(e) {}
 function searchInput(e) {
-  clearResults();
   e.preventDefault();
   resultPage = 1;
   const query = form.querySelector('input').value;
+  e.target.reset();
+
   searchMovieByQuery(query, resultPage);
 }
 async function searchMovieByQuery(q, pagePag = 1) {
@@ -67,7 +66,6 @@ async function searchMovieByQuery(q, pagePag = 1) {
       `${URL_SEARCH_MOVIE}?api_key=${API_KEY_TMDb}&language=en-US&query=${q}&page=${pagePag}&include_adult=false`
     );
     //
-    console.log(findMovieArray);
     const { results, page, total_pages } = findMovieArray.data;
     createMarkup(results);
     hidePreloder();
@@ -78,7 +76,8 @@ async function searchMovieByQuery(q, pagePag = 1) {
       const pagination = new Pagination(container, options);
       pagination.on('afterMove', function (eventData) {
         resultPage = eventData.page;
-        searchMovieByQuery(q, pagePag);
+        searchMovieByQuery(q, resultPage);
+        scrollToTop();
       });
     }
     //
