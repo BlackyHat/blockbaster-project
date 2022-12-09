@@ -50,6 +50,7 @@ export class FilmsApiService {
 }
 const form = document.querySelector('.search__box');
 const text = document.querySelector('.form__text');
+let resultPage = 1;
 form.addEventListener('submit', searchInput);
 function searchInput(e) {
   e.preventDefault();
