@@ -2,6 +2,7 @@ import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { createMarkup } from './films';
 import { hidePreloder, showPreloder } from './preloder.js';
+
 //CONSTANTS
 const URL = 'https://api.themoviedb.org/3';
 const GET_TRENDING = '/trending/movie/week';
