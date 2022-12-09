@@ -1,6 +1,6 @@
 import './js/blinking-heart.js';
 import { hidePreloder, showPreloder } from './js/preloder';
-// import { createMarkup } from './js/films.js';
+
 hidePreloder();
 
 const filterRef = document.querySelector('.js-filters');
@@ -17,8 +17,6 @@ filterRef.addEventListener('click', evt => {
     .querySelector('.is-active')
     .classList.remove('is-active');
   target.classList.add('is-active');
-  console.log(movieType);
-  console.log(getMovies(movieType));
   createMarkup(getMovies(movieType));
 });
 
@@ -31,7 +29,6 @@ function getMovies(type) {
 function createMarkup(data) {
   const markup = data
     .map(el => {
-      //
       const date = new Date(el.release_date);
       let genres_ids = [];
       // //
@@ -48,6 +45,7 @@ function createMarkup(data) {
       // } else {
       // console.log(el.genres);
 
+
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
                     <img src="https://image.tmdb.org/t/p/w500/${
@@ -63,10 +61,10 @@ function createMarkup(data) {
                </p>
             </div>
             </a>
-</li>`;
+      </li>`;
     })
     .join('');
-  //
+
   const movieGallery = document.querySelector('.movie__gallery');
   movieGallery.innerHTML = markup;
 }

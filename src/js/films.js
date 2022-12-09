@@ -45,7 +45,7 @@ export function createMarkup(data) {
       const date = new Date(el.release_date);
       let genres_ids = [];
       //
-      if (!el.genres) {
+      if (!el.genres?.length) {
         el.genre_ids.forEach(el => {
           const arr = filmsApiService.genres_ids_array.genres;
           arr.forEach(({ id, name }) => {
@@ -58,7 +58,7 @@ export function createMarkup(data) {
       } else {
         genres_ids = el.genres.map(({ name }) => name);
       }
-
+      
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
                     <img src="https://image.tmdb.org/t/p/w500/${
