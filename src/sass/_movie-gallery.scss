@@ -25,13 +25,12 @@ ul.movie__gallery {
   // width: 768px;
   //   }
 
-  //   @media screen and(min-width: 1024px) {
-  //     // width: 1280px;
-  //     &:last-child,
-  //     &:nth-last-of-type(2) {
-  //       align-items: flex-start;
-  //     }
-  //   }
+  @media screen and(min-width: 1024px) {
+    justify-content: center;
+
+    // width: 1280px;
+    //     &:last-child,
+  }
 }
 
 //one card in JS
@@ -41,11 +40,13 @@ ul.movie__gallery {
     width: 280px;
     height: auto;
     margin-bottom: 20px;
+    border-radius: 5px;
   }
 
   img.film-poster__img {
     width: 280px;
     height: 402px;
+    border-radius: 5px;
   }
 
   .info__title,
@@ -113,6 +114,9 @@ ul.movie__gallery {
     margin-bottom: 25px;
     width: 395px;
     height: auto;
+    &:last-of-type {
+      margin-right: 430px;
+    }
   }
 
   img.film-poster__img {
