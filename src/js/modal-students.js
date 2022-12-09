@@ -1,4 +1,9 @@
-  const refs = {
+import SimpleBar from 'simplebar';
+import 'simplebar/dist/simplebar.css';
+
+new SimpleBar(document.getElementById('bar'));
+
+const refs = {
     openModalBtn: document.querySelector("[data-modal-open]"),
     closeModalBtn: document.querySelector("[data-modal-close]"),
     modal: document.querySelector("[data-modal]"),
