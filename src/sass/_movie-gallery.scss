@@ -21,17 +21,17 @@ ul.movie__gallery {
 
   //     }
 
-  @media screen and(min-width: 768px) {
-    width: 768px;
-  }
+  //   @media screen and(min-width: 768px) {
+  // width: 768px;
+  //   }
 
-  @media screen and(min-width: 1024px) {
-    width: 1280px;
-    &:last-child,
-    &:nth-last-of-type(2) {
-      align-items: flex-start;
-    }
-  }
+  //   @media screen and(min-width: 1024px) {
+  //     // width: 1280px;
+  //     &:last-child,
+  //     &:nth-last-of-type(2) {
+  //       align-items: flex-start;
+  //     }
+  //   }
 }
 
 //one card in JS

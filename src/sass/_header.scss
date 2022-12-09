@@ -5,7 +5,7 @@
   top: 0;
   width: 100%;
   height: auto;
-  max-width: 1600px;
+  // max-width: 1600px;
   max-height: 216px;
   background-image: linear-gradient(
       to right,
@@ -123,200 +123,194 @@
   }
 }
 .header__wrap {
-    position: relative;
+  position: relative;
 }
 .header__container {
-    padding-top: 42px;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    @media screen and (min-width: 768px) {
-        padding-left: 31px;
-        padding-right: 33px;
-        padding-bottom: 40px;
-    }
+  padding-top: 42px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  @media screen and (min-width: 768px) {
+    padding-left: 31px;
+    padding-right: 33px;
+    padding-bottom: 40px;
+  }
 }
 .header__logo-container {
-    margin-right: auto;
-    align-items: center;
-
+  margin-right: auto;
+  align-items: center;
 }
 .header__logo-icon {
   fill: #ffffff;
 }
 .header__logo {
-    color: #FFFFFF;
-    @media screen and (min-width: 768px) {
-        padding-right: 8px;
-    }
-    
+  color: #ffffff;
+  @media screen and (min-width: 768px) {
+    padding-right: 8px;
+  }
 }
 .logo {
-    display: none;
+  display: none;
 }
 
 .header__nav {
-    align-items: center;
+  align-items: center;
 }
 .header__nav:last-child {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 .header__site-nav {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
+  justify-content: flex-end;
 }
 
 .header__item {
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 12px;
-        line-height: 1.1;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.1;
 
-        text-transform: uppercase;
+  text-transform: uppercase;
 
-        &:not(:last-child) {
-            margin-right: 39px;
-        }
+  &:not(:last-child) {
+    margin-right: 39px;
+  }
 }
 .header__link {
-    display: block;
-    color: #ffffff;
-    position: relative;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+  display: block;
+  color: #ffffff;
+  position: relative;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
     text-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .underline {
-    border-radius: 2px;
+  border-radius: 2px;
 
-    &::after {
-        color: #ff001b;
-        z-index: 1000;
-        display: block;
-        position: absolute;
-        content: '';
-        width: 100%;
-        height: 3px;
-        left: 0;
-        bottom: -5px;
-        background-color: #ff001b;
-        // opacity: 1;
-        transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
+  &::after {
+    color: #ff001b;
+    z-index: 1000;
+    display: block;
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 3px;
+    left: 0;
+    bottom: -5px;
+    background-color: #ff001b;
+    // opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
 }
 .search__box {
-    width: auto;
-    position: relative;
-    top: 56px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding-bottom: 92px;
+  width: auto;
+  position: relative;
+  top: 56px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 92px;
 }
 
 .search__input {
-    color: #ffffff;
-    min-width: 280px;
-    background-color: transparent;
-    outline: 0;
-    border-width: 0 0 0.5px;
-    border-color: rgb(255, 255, 255);
+  color: #ffffff;
+  min-width: 280px;
+  background-color: transparent;
+  outline: 0;
+  border-width: 0 0 0.5px;
+  border-color: rgb(255, 255, 255);
 
-    @media screen and (min-width: 768px) {
-        min-width: 336px;
-    }
-    @media screen and (min-width: 1200px) {
-        min-width: 394px;
-    }
+  @media screen and (min-width: 768px) {
+    min-width: 336px;
+  }
+  @media screen and (min-width: 1200px) {
+    min-width: 394px;
+  }
 }
 .search__input::placeholder {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.1;
-    display: flex;
-    align-items: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
 }
 .search__button {
-    position: fixed;
-    top: 10px;
-    left: calc(50% + 140px - 10px);
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    
-    @media screen and (min-width: 768px) {
-        left: calc(50% + 168px - 10px);
-        }
-       
-    @media screen and (min-width: 1200px) {
-        left: calc(50% + 197px - 10px);
-        }
+  position: fixed;
+  top: 10px;
+  left: calc(50% + 140px - 10px);
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    left: calc(50% + 168px - 10px);
+  }
+
+  @media screen and (min-width: 1200px) {
+    left: calc(50% + 197px - 10px);
+  }
 }
 
 .form__text {
-    margin-top: 10px;
-    color: rgba(255, 0, 27, 1);
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.1;
-    font-family: 'Roboto';
-    font-style: normal;
+  margin-top: 10px;
+  color: rgba(255, 0, 27, 1);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.1;
+  font-family: 'Roboto';
+  font-style: normal;
 }
 
 @media screen and (min-width: 768px) {
-    .logo {
-        display: none;
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 30px;
-        line-height: 35px;
-        display: flex;
-        align-items: center;
-        text-align: center;
-        color: #ffffff;
-    }
-    .header__link-icon:not(:last-child) {
-        margin-right: 12px;
-    }
-    
-    .header {
-        width: 100%;
-    }
-    .header__conteiner {
+  .logo {
+    display: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ffffff;
+  }
+  .header__link-icon:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  .header {
+    width: 100%;
+  }
+  .header__conteiner {
     padding-top: 45px;
   }
 
   .header__logo-container {
     display: flex;
-  }    
+  }
 }
 
-
-
 .library__nav {
-    display: flex;
-    gap: 20px;
-    padding-bottom: 62px;
-    justify-content: center;
+  display: flex;
+  gap: 20px;
+  padding-bottom: 62px;
+  justify-content: center;
 
-    @media screen and (min-width: 768px) {
-        gap: 32px;
-        padding-bottom: 60px;
-    }
-    @media screen and (min-width: 1280px) {
-        gap: 16px;
-    }
-
+  @media screen and (min-width: 768px) {
+    gap: 32px;
+    padding-bottom: 60px;
+  }
+  @media screen and (min-width: 1280px) {
+    gap: 16px;
+  }
 }
 
 .library__nav-btn {
@@ -327,28 +321,27 @@
   line-height: 16px;
   transition: background-color linear 250ms;
 
-    color: #FFFFFF;
-    box-sizing: border-box;
-    width: 130px;
-    height: 42px;
-    border: 1px solid #FFFFFF;
-    border-radius: 5px;
-    background-color: transparent;
+  color: #ffffff;
+  box-sizing: border-box;
+  width: 130px;
+  height: 42px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: transparent;
 
-    @media screen and (min-width: 768px) {
-        width: 152px;
-    }
-    @media screen and (min-width: 1280px) {
-        width: 147px;
-    }
-
+  @media screen and (min-width: 768px) {
+    width: 152px;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 147px;
+  }
 }
 
-.library__nav-btn:hover, .is-active {
+.library__nav-btn:hover,
+.is-active {
   background-color: #ff6b01;
-  border-color: #ff6b01 ;
+  border-color: #ff6b01;
 }
-
 
 .footer {
   // position: absolute;
@@ -361,7 +354,7 @@
 
 .footer__line {
   text-align: center;
-  padding: 29px auto;
+  // padding: 30px 0 28px;
 }
 
 .footer__icon {
@@ -376,8 +369,8 @@
   font-size: 14px;
   line-height: 16px;
   font-weight: 400;
-  margin-top: 28px;
-  margin-bottom: 10px;
+  margin: 30px 0 28px;
+  // margin-bottom: 10px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
