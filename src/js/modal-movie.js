@@ -49,7 +49,6 @@ function onEscPress(e) {
 function createMovieCard(e) {
   // if (e.target.closest('li.movie__gallery--items'));
   const idMovie = e.target.closest('li');
-  console.log(idMovie.id);
 
   MovieApiById(idMovie.id);
   // createMovieCardById(idMovie);
@@ -141,6 +140,7 @@ function createMovieCardById(item) {
     title,
     original_title,
     genres,
+    genre_ids,
     id,
     release_date,
   };
