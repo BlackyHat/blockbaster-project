@@ -73,7 +73,9 @@ ul.movie__gallery {
     height: auto;
     margin-bottom: 25px;
   }
-
+  .gallery__item:nth-child(odd) {
+    margin-right: 32px;
+  }
   img.film-poster__img {
     width: 336px;
     height: 455px;
@@ -110,9 +112,9 @@ ul.movie__gallery {
     margin-bottom: 25px;
     width: 395px;
     height: auto;
-    &:last-of-type {
-      margin-right: 430px;
-    }
+    //   &:last-of-type {
+    //     margin-right: 430px;
+    //   }
   }
 
   img.film-poster__img {
