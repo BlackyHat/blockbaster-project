@@ -29,6 +29,7 @@ function onModalMovieOpen() {
 function onModalMovieClose() {
   document.body.classList.remove('show-modal');
   window.removeEventListener('keydown', onEscPress);
+  window.postMessage('closeModal');
 }
 
 function onBackdropClose(e) {

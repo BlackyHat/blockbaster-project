@@ -68,3 +68,15 @@ function createMarkup(data) {
   const movieGallery = document.querySelector('.movie__gallery');
   movieGallery.innerHTML = markup;
 }
+
+const handleCloseModal = () => {
+  window.addEventListener('message', (evt)=> {
+    const movieType = document.querySelector('.js-filters .is-active').dataset.type;
+  
+    if(evt.data === 'closeModal') {
+        createMarkup(getMovies(movieType));
+    }
+  })
+}
+
+handleCloseModal();
