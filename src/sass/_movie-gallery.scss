@@ -37,7 +37,7 @@ ul.movie__gallery {
 
 @media screen and (min-width: 320px) {
   li.gallery__item {
-    width: 280px;
+    width: 300px;
     height: auto;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -115,7 +115,7 @@ ul.movie__gallery {
     width: 395px;
     height: auto;
     &:last-of-type {
-      margin-right: 430px;
+      // margin-right: 430px;
     }
   }
 
