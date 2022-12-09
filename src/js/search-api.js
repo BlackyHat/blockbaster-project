@@ -8,9 +8,9 @@ import { container } from './pagination';
 import { options } from './pagination';
 
 //CONSTANTS
-const URL = 'https://api.themoviedb.org/3';
+export const URL = 'https://api.themoviedb.org/3';
 const GET_TRENDING = '/trending/movie/week';
-const GET_GENRE_LIST = '/genre/movie/list';
+export const GET_GENRE_LIST = '/genre/movie/list';
 const URL_SEARCH_MOVIE = 'https://api.themoviedb.org/3/search/movie';
 
 export class FilmsApiService {
@@ -47,7 +47,10 @@ export class FilmsApiService {
       console.log(error.message);
     }
   }
+
+  
 }
+
 const form = document.querySelector('.search__box');
 const text = document.querySelector('.form__text');
 let resultPage = 1;

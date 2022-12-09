@@ -1,11 +1,21 @@
+import axios from 'axios';
+
 import './js/blinking-heart.js';
 import { hidePreloder, showPreloder } from './js/preloder';
+import { API_KEY_TMDb } from './js/consts/api_key.js';
 
+const URL = 'https://api.themoviedb.org/3';
+const GET_GENRE_LIST = '/genre/movie/list';
+
+let genres = [];
 hidePreloder();
 
 const filterRef = document.querySelector('.js-filters');
 
-createMarkup(getMovies('watched'));
+window.addEventListener('load', async () => {
+  await getGenres()
+  createMarkup(getMovies('watched'));
+})
 
 filterRef.addEventListener('click', evt => {
   const target = evt.target.closest('button');
@@ -33,7 +43,7 @@ function createMarkup(data) {
       let genres_ids = [];
       if (!el.genres?.length) {
         el.genre_ids.forEach(el => {
-          const arr = filmsApiService.genres_ids_array.genres;
+          const arr = genres;
           arr.forEach(({ id, name }) => {
             if (id === el) {
               genres_ids.push(name);
@@ -66,4 +76,16 @@ function createMarkup(data) {
 
   const movieGallery = document.querySelector('.movie__gallery');
   movieGallery.innerHTML = markup;
+}
+
+async function getGenres () {
+  const searchParams = new URLSearchParams({
+    api_key: API_KEY_TMDb,
+    page: 1,
+    language: 'en',
+  });
+
+  genres = await axios.get(
+    `${URL}${GET_GENRE_LIST}?${searchParams}`
+  );
 }
