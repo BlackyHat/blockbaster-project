@@ -344,10 +344,11 @@
 
 }
 
-.library__nav-btn:hover {
+.library__nav-btn:hover, .is-active {
   background-color: #ff6b01;
   border-color: #ff6b01 ;
 }
+
 
 .footer {
   // position: absolute;
