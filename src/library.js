@@ -46,7 +46,7 @@ function createMarkup(data) {
       //   });
       //   genres_ids = genres_ids.slice(0, 3);
       // } else {
-      console.log(el.genres);
+      // console.log(el.genres);
 
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">

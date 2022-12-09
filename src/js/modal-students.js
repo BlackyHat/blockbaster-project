@@ -1,7 +1,7 @@
-// import SimpleBar from 'simplebar';
-// import 'simplebar/dist/simplebar.css';
+import SimpleBar from 'simplebar';
+import 'simplebar/dist/simplebar.css';
 
-// new SimpleBar(document.getElementById('bar'));
+new SimpleBar(document.getElementById('bar'));
 const refs = {
   openModalBtn: document.querySelector('[data-modal-open]'),
   closeModalBtn: document.querySelector('[data-modal-close]'),
@@ -14,7 +14,6 @@ document.addEventListener('click', e => {
     e.preventDefault();
   }
 });
-console.log(refs.closeModalBtn);
 
 refs.openModalBtn.addEventListener('click', openModal);
 
