@@ -2,6 +2,9 @@ import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
 import { createMarkup } from './films';
 import { hidePreloder, showPreloder } from './preloder.js';
+import Pagination from 'tui-pagination';
+import { container } from './pagination';
+import { options } from './pagination';
 
 //CONSTANTS
 const URL = 'https://api.themoviedb.org/3';
@@ -48,21 +51,37 @@ const form = document.querySelector('.search__box');
 const text = document.querySelector('.form__text');
 form.addEventListener('submit', searchInput);
 
-form.addEventListener('submit', searchSubmit);
-function searchSubmit(e) {}
+// form.addEventListener('submit', searchSubmit);
+// function searchSubmit(e) {}
 function searchInput(e) {
+  clearResults();
   e.preventDefault();
+  resultPage = 1;
   const query = form.querySelector('input').value;
-  searchMovieByQuery(query);
+  searchMovieByQuery(query, resultPage);
 }
-async function searchMovieByQuery(q) {
+async function searchMovieByQuery(q, pagePag = 1) {
   try {
     showPreloder();
     const findMovieArray = await axios.get(
-      `${URL_SEARCH_MOVIE}?api_key=${API_KEY_TMDb}&language=en-US&query=${q}&page=1&include_adult=false`
+      `${URL_SEARCH_MOVIE}?api_key=${API_KEY_TMDb}&language=en-US&query=${q}&page=${pagePag}&include_adult=false`
     );
-    createMarkup(findMovieArray.data.results);
+    //
+    console.log(findMovieArray);
+    const { results, page, total_pages } = findMovieArray.data;
+    createMarkup(results);
     hidePreloder();
+    //
+    if (page < total_pages) {
+      options.totalItems = total_pages;
+      options.page = pagePag;
+      const pagination = new Pagination(container, options);
+      pagination.on('afterMove', function (eventData) {
+        resultPage = eventData.page;
+        searchMovieByQuery(q, pagePag);
+      });
+    }
+    //
     if (findMovieArray.data.results.length < 1) {
       text.style.visibility = 'inherit';
     }
