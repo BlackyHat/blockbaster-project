@@ -32,19 +32,19 @@ function createMarkup(data) {
       const date = new Date(el.release_date);
       let genres_ids = [];
       // //
-      if (!el.genres?.length) {
-        el.genre_ids.forEach(el => {
-          const arr = filmsApiService.genres_ids_array.genres;
-          arr.forEach(({ id, name }) => {
-            if (id === el) {
-              genres_ids.push(name);
-            }
-          });
-        });
-        genres_ids = genres_ids.slice(0, 3);
-      } else {
-        genres_ids = el.genres.map(({ name }) => name);
-      }
+      // if (!el.genres?.length) {
+      //   el.genre_ids.forEach(el => {
+      //     const arr = filmsApiService.genres_ids_array.genres;
+      //     arr.forEach(({ id, name }) => {
+      //       if (id === el) {
+      //         genres_ids.push(name);
+      //       }
+      //     });
+      //   });
+      //   genres_ids = genres_ids.slice(0, 3);
+      // } else {
+      //   genres_ids = el.genres.map(({ name }) => name);
+      // }
       //
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
