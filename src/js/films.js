@@ -3,6 +3,7 @@ import Pagination from 'tui-pagination';
 import { container } from './pagination';
 import { options } from './pagination';
 import { hidePreloder, showPreloder } from './preloder';
+import { scrollToTop } from './scrollToTop';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -26,6 +27,7 @@ export function getTrendMovies(pagePag = 1) {
         pagination.on('afterMove', function (event) {
           pagePag = event.page;
           getTrendMovies(pagePag);
+          scrollToTop();
         });
       }
       hidePreloder();
@@ -54,7 +56,7 @@ export function createMarkup(data) {
         });
         genres_ids = genres_ids.slice(0, 3);
       } else {
-        genres_ids = el.genres.map(({name}) => name);
+        genres_ids = el.genres.map(({ name }) => name);
       }
 
       return `<li class="gallery__item" id="${el.id}">
