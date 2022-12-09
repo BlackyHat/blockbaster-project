@@ -1,6 +1,6 @@
 import './js/blinking-heart.js';
 import { hidePreloder, showPreloder } from './js/preloder';
-// import { createMarkup } from './js/films.js';
+
 hidePreloder();
 
 const filterRef = document.querySelector('.js-filters');
@@ -17,8 +17,6 @@ filterRef.addEventListener('click', evt => {
     .querySelector('.is-active')
     .classList.remove('is-active');
   target.classList.add('is-active');
-  console.log(movieType);
-  console.log(getMovies(movieType));
   createMarkup(getMovies(movieType));
 });
 
@@ -31,22 +29,21 @@ function getMovies(type) {
 function createMarkup(data) {
   const markup = data
     .map(el => {
-      //
       const date = new Date(el.release_date);
       let genres_ids = [];
-      // //
-      // if (!el.genres) {
-      //   el.genre_ids.forEach(el => {
-      //     const arr = filmsApiService.genres_ids_array.genres;
-      //     arr.forEach(({ id, name }) => {
-      //       if (id === el) {
-      //         genres_ids.push(name);
-      //       }
-      //     });
-      //   });
-      //   genres_ids = genres_ids.slice(0, 3);
-      // } else {
-      console.log(el.genres);
+      if (!el.genres?.length) {
+        el.genre_ids.forEach(el => {
+          const arr = filmsApiService.genres_ids_array.genres;
+          arr.forEach(({ id, name }) => {
+            if (id === el) {
+              genres_ids.push(name);
+            }
+          });
+        });
+        genres_ids = genres_ids.slice(0, 3);
+      } else {
+        genres_ids = el.genres.map(({ name }) => name);
+      }
 
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card"">
@@ -63,10 +60,10 @@ function createMarkup(data) {
                </p>
             </div>
             </a>
-</li>`;
+      </li>`;
     })
     .join('');
-  //
+
   const movieGallery = document.querySelector('.movie__gallery');
   movieGallery.innerHTML = markup;
 }
