@@ -194,7 +194,7 @@
 
   &::after {
     color: #ff001b;
-    z-index: 1000;
+    z-index: 100;
     display: block;
     position: absolute;
     content: '';
@@ -351,6 +351,15 @@
   width: 100%;
   background-color: #f7f7f7;
   color: #545454;
+
+  & a {
+    &:visited {
+      color: inherit;
+    }
+    &:hover {
+      color: #262525;
+    }
+  }
 }
 
 .footer__line {
