@@ -1,219 +1,228 @@
-
 :root {
-    --dark: #2f313a;
-    --deg: -86deg;
-    --trans: all 0.4s ease 0s;
+  --dark: #2f313a;
+  --deg: -86deg;
+  --trans: all 0.4s ease 0s;
 }
 
-
 .content {
-    	width: 90vmin; 
+  //   width: 90vmin;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .team {
-    padding: 2em;
-    margin: 0;
+  padding: 2em;
+  margin: 0;
 }
 
 .list__item {
-    margin: 1.5em 0 0.5em;
-    padding: 0.73em;
-    background: linear-gradient(83deg,
-            $color-accent 0 97%,
-            #fff0 calc(97% + 1px) 100%);
-    position: relative;
-    list-style: none;
-    display: inline-block;
-    transform: scale(0.85);
-    transition: var(--trans);
+  margin: 1.5em 0 0.5em;
+  padding: 0.73em;
+  background: linear-gradient(
+    83deg,
+    $color-accent 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
+  position: relative;
+  list-style: none;
+  display: inline-block;
+  transform: scale(0.85);
+  transition: var(--trans);
 }
 
 .list__item:nth-of-type(even) {
-    text-align: right;
-    background: linear-gradient(-83deg,
-            $color-accent 0 97%,
-            #fff0 calc(97% + 1px) 100%);
+  text-align: right;
+  background: linear-gradient(
+    -83deg,
+    $color-accent 0 97%,
+    #fff0 calc(97% + 1px) 100%
+  );
 }
 
 .thumb {
-    width: 20vmin;
-    height: 20vmin;
-    float: left;
-    margin-right: 1.25em;
-    background: linear-gradient(var(--deg),
-            var(--dark) 0 70%,
-            $color-accent 0% 100%);
-    transform: rotate(-4deg);
-    transition: var(--trans);
-    border-radius: 0.25em;
-    overflow: hidden;
-    margin-left: -3em;
-    padding: 0.5em;
+  width: 20vmin;
+  height: 20vmin;
+  float: left;
+  margin-right: 1.25em;
+  background: linear-gradient(
+    var(--deg),
+    var(--dark) 0 70%,
+    $color-accent 0% 100%
+  );
+  transform: rotate(-4deg);
+  transition: var(--trans);
+  border-radius: 0.25em;
+  overflow: hidden;
+  margin-left: -3em;
+  padding: 0.5em;
 }
 
 .list__item:nth-of-type(even) .thumb {
-    --deg: 86deg;
-    float: right;
-    margin-left: 2em;
-    margin-right: -3em;
-    transform: rotate(4deg);
+  --deg: 86deg;
+  float: right;
+  margin-left: 2em;
+  margin-right: -3em;
+  transform: rotate(4deg);
 }
 
 .thumb img {
-    width: 100%;
-    height: 100%;
-    border-radius: 0.25em;
-    filter: grayscale(1);
-    background: var(--dark);
+  width: 100%;
+  height: 100%;
+  border-radius: 0.25em;
+  filter: grayscale(1);
+  background: var(--dark);
 }
 
 .list__item:hover {
-    transform: scale(1);
-    transition: var(--trans);
-    filter: drop-shadow(0px 20px 10px #0008);
+  transform: scale(1);
+  transition: var(--trans);
+  filter: drop-shadow(0px 20px 10px #0008);
 }
 
 .list__item:hover .thumb {
-    padding: 0.1em;
-    transition: var(--trans);
-    transform: rotate(-1deg);
-    --deg: -89deg;
+  padding: 0.1em;
+  transition: var(--trans);
+  transform: rotate(-1deg);
+  --deg: -89deg;
 }
 
 .list__item:nth-of-type(even):hover .thumb {
-    --deg: 91deg;
+  --deg: 91deg;
 }
 
 .list__item:hover .thumb img {
-    filter: none;
-    transition: var(--trans);
+  filter: none;
+  transition: var(--trans);
 }
 
 .description {
-    padding-top: 1vmin;
+  padding-top: 1vmin;
 }
 
 .description p {
-    padding: 0 2em;
-    margin-bottom: 1em;
-    font-size: 18px;
+  padding: 0 2em;
+  margin-bottom: 1em;
+  font-size: 18px;
 }
 
 .student__name {
-    background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
-    display: inline;
-    transform: rotate(-2deg);
-    position: absolute;
-    margin: 0;
-    margin-top: -2.25em;
-    left: 9vmin;
-    padding: 0.5em 0.75em;
-    color: $color-accent;
-    border-radius: 0.25em;
-    font-size: 1.35em;
-    transform-origin: left bottom;
+  background: linear-gradient(182deg, #2a2525 60%, var(--dark) 0 100%);
+  display: inline;
+  transform: rotate(-2deg);
+  position: absolute;
+  margin: 0;
+  margin-top: -2.25em;
+  left: 9vmin;
+  padding: 0.5em 0.75em;
+  color: $color-accent;
+  border-radius: 0.25em;
+  font-size: 1.35em;
+  transform-origin: left bottom;
 }
 
 .list__item:nth-of-type(even) h3 {
-    left: inherit;
-    right: 9vmin;
-    transform: rotate(2deg);
-    transform-origin: right bottom;
-    background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
+  left: inherit;
+  right: 9vmin;
+  transform: rotate(2deg);
+  transform-origin: right bottom;
+  background: linear-gradient(-182deg, #242222 60%, var(--dark) 0 100%);
 }
 
 .list__item:hover h3 {
-    transition: var(--trans);
-    transform: rotate(0deg);
-    background: linear-gradient(180deg, #fff0 59%, var(--dark) 0 100%);
+  transition: var(--trans);
+  transform: rotate(0deg);
+  background: linear-gradient(180deg, #2c2a2a 59%, var(--dark) 0 100%);
 }
 
-
 .description p span {
-    display: inline-block;
-    margin: 0.5em 0 0 0;
-    background: var(--dark);
-    color: $color-accent;
-    padding: 0.1em 0.5em 0.35em;
-    border-radius: 0.5em;
-    text-decoration: none;
-    transition: var(--trans);
+  display: inline-block;
+  margin: 0.5em 0 0 0;
+  background: var(--dark);
+  color: $color-accent;
+  padding: 0.1em 0.5em 0.35em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  transition: var(--trans);
 }
 
 .description p span:hover {
-    transition: var(--trans);
-    color: var(--dark);
-    background: $color-accent;
-    font-weight: bold;
+  transition: var(--trans);
+  color: var(--dark);
+  background: $color-accent;
+  font-weight: bold;
 }
-
 
 // ------------------------------------------------
 
 .backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,.2);
-    transform: scale(1);
-    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
-        transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1);
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
-    opacity: 0;
-    transform: scale(3);
-    pointer-events: none;
+  opacity: 0;
+  transform: scale(3);
+  pointer-events: none;
 }
 
 .modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    // width: 50%;
-    max-height: 90%;
-    // overflow: auto;
-    padding: 30px 30px 30px 20px;
-    border-radius: 4px;
-    background-color: rgba(243, 218, 150, 0.562);
-    box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%), 0px 2px 1px rgb(0 0 0 / 20%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // width: 50%;
+  max-height: 90%;
+  // overflow: auto;
+  padding: 30px 30px 30px 20px;
+  border-radius: 4px;
+  background-color: rgba(243, 218, 150, 0.562);
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%);
 
-    font-family: $main-font-family;
-    font-style: $main-font-style;
-    font-weight: $main-font-weight;
+  font-family: $main-font-family;
+  font-style: $main-font-style;
+  font-weight: $main-font-weight;
 
-    @media screen and (max-width: 767px) {
-        width: 100%;
-    }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 
-    @media screen and (min-width: 768px) {
-        width: 80%;
-    }
+  @media screen and (min-width: 768px) {
+    width: 80%;
+  }
+  @media screen and (min-width: 1280px) {
+    width: 980px;
+  }
 }
 
-.modal__close  {
-    position: absolute;
-    top: 12px;
-    right: 20px;
-    width: 35px;
-    height: 35px;
-    background-color: $color-white;
-    border: 1px solid rgba(0,0,0,.1);
-    border-radius: 15px;
-    cursor: pointer;
-    color: $color-black;
+.modal__close {
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  z-index: 9;
+  width: 35px;
+  height: 35px;
+  background-color: $color-white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  cursor: pointer;
+  color: $color-black;
 
-    &:hover {
-        color: $color-accent;
-    }
+  &:hover {
+    color: $color-accent;
+  }
 }
 
 .modal__close-icon {
-    width: 11px;
-    height: 11px;
-    fill: currentColor;
-    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 11px;
+  height: 11px;
+  fill: currentColor;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
