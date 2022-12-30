@@ -41,6 +41,7 @@ body.show-modal .js-modalMovie__backdrop {
   font-family: $main-font-family;
   font-weight: $main-font-weight;
   font-style: $main-font-style;
+  border-radius: 5px;
 
   background-color: $color-white;
   pointer-events: none;
@@ -81,8 +82,9 @@ body.show-modal .js-modalMovie__backdrop {
     padding: 48px 20px 40px 20px;
 
     @media screen and (min-width: 768px) {
-      padding: 40px 72px 40px 36px;
+      padding: 40px 36px;
       display: flex;
+      gap: 16px;
     }
 
     @media screen and (min-width: 1024px) {
@@ -93,30 +95,26 @@ body.show-modal .js-modalMovie__backdrop {
 
 .movie {
   &__poster {
-    width: 240px;
-    // height: 357px;
-    justify-content: center;
-
-    &__poster--img {
-      max-width: 100%;
-      max-height: 100%;
-    }
-
+    position: relative;
+    border-radius: 5px;
+    // width: 240px;
+    //     // height: 357px;
     @media screen and (min-width: 768px) {
-      width: 264px;
-      // height: 374px;
-      margin-right: 68px;
+      width: 50%;
+      max-height: 486px;
     }
-    @media screen and (min-width: 1024px) {
-      width: 375px;
-      // height: 478px;
-      margin-right: 16px;
-    }
+  }
+
+  &-poster__img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
   }
 
   &__about {
     @media screen and (min-width: 768px) {
-      width: 264px;
+      width: 50%;
     }
     @media screen and (min-width: 1024px) {
       width: 391px;
@@ -285,4 +283,43 @@ body.show-modal .js-modalMovie__backdrop {
     color: $color-white;
     background-color: $color-accent;
   }
+}
+
+.movie-treiler {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120;
+  height: 70px;
+  cursor: pointer;
+  background-color: #1d1d1dcf;
+  transition: background-color 350ms linear;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 12px;
+  background-image: url('../images/play_icon.svg');
+  background-size: 36px;
+  background-position: 55% 50%;
+  background-repeat: no-repeat;
+  &:hover {
+    background-color: rgb(40, 40, 40);
+  }
+}
+
+.iframe {
+  width: 100%;
+  height: 240px;
+  @media screen and (min-width: 768px) {
+    height: 420px;
+  }
+  @media screen and (min-width: 1024px) {
+    height: 480px;
+  }
+}
+.frame-container {
+  display: block;
+  // position: absolute;
+  width: 640px;
+  height: 380px;
 }

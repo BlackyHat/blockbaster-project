@@ -8,11 +8,13 @@ import { container } from './pagination';
 import { options } from './pagination';
 
 //CONSTANTS
-const URL = 'https://api.themoviedb.org/3';
-const GET_TRENDING = '/trending/movie/week';
-const GET_GENRE_LIST = '/genre/movie/list';
-const URL_SEARCH_MOVIE = 'https://api.themoviedb.org/3/search/movie';
+// axios
 
+export const URL = 'https://api.themoviedb.org/3';
+const GET_TRENDING = '/trending/movie/week';
+export const GET_GENRE_LIST = '/genre/movie/list';
+const URL_SEARCH_MOVIE = 'https://api.themoviedb.org/3/search/movie';
+//
 export class FilmsApiService {
   constructor() {
     this.searchQuery = '';
@@ -60,7 +62,7 @@ function searchInput(e) {
 
   searchMovieByQuery(query, resultPage);
 }
-async function searchMovieByQuery(q, pagePag = 1) {
+export async function searchMovieByQuery(q, pagePag = 1) {
   try {
     showPreloder();
     const findMovieArray = await axios.get(

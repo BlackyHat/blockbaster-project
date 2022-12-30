@@ -1,5 +1,6 @@
 import './js/blinking-heart.js';
 import { hidePreloder, showPreloder } from './js/preloder';
+import './js/modal-movie.js';
 
 hidePreloder();
 
@@ -41,7 +42,7 @@ function createMarkup(data) {
             }
           });
         });
-        genres_ids = genres_ids.slice(0, 3);
+        genres_ids = genres_ids.slice(0, 2);
       } else {
         genres_ids = el.genres.map(({ name }) => name);
       }
@@ -70,13 +71,14 @@ function createMarkup(data) {
 }
 
 const handleCloseModal = () => {
-  window.addEventListener('message', (evt)=> {
-    const movieType = document.querySelector('.js-filters .is-active').dataset.type;
-  
-    if(evt.data === 'closeModal') {
-        createMarkup(getMovies(movieType));
+  window.addEventListener('message', evt => {
+    const movieType = document.querySelector('.js-filters .is-active').dataset
+      .type;
+
+    if (evt.data === 'closeModal') {
+      createMarkup(getMovies(movieType));
     }
-  })
-}
+  });
+};
 
 handleCloseModal();

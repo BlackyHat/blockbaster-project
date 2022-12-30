@@ -401,3 +401,41 @@
     line-height: 19px;
   }
 }
+
+.genres-bar {
+  visibility: hidden;
+  width: 1;
+  height: 1;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  @media screen and (min-width: 1024px) {
+    max-width: 880px;
+    visibility: visible;
+    width: 100%;
+    height: 56px;
+    flex-wrap: wrap;
+    gap: 8px;
+    display: flex;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    overflow: hidden;
+    transform: translateX(-50%);
+    justify-content: space-between;
+    align-items: center;
+    & button {
+      border-radius: 8px;
+      background-color: #11ffee00;
+      font-size: 16px;
+      padding: 0 12px;
+      color: #ffffff;
+      transition: background-color 350ms linear;
+      border: 1px solid white;
+      cursor: pointer;
+      &:hover {
+        background-color: #c0c1c129;
+      }
+    }
+  }
+}

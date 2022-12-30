@@ -4,6 +4,7 @@ import { container } from './pagination';
 import { options } from './pagination';
 import { hidePreloder, showPreloder } from './preloder';
 import { scrollToTop } from './scrollToTop';
+import { renderButtons } from './genres-bar';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -19,6 +20,7 @@ export function getTrendMovies(pagePag = 1) {
         throw new Error();
       }
       createMarkup(results);
+      renderButtons(filmsApiService.genres_ids_array.genres);
 
       if (pagePag < totalPages) {
         options.totalItems = totalPages;
@@ -54,13 +56,13 @@ export function createMarkup(data) {
             }
           });
         });
-        genres_ids = genres_ids.slice(0, 3);
+        genres_ids = genres_ids.slice(0, 2);
       } else {
         genres_ids = el.genres.map(({ name }) => name);
       }
-      
+
       return `<li class="gallery__item" id="${el.id}">
-            <a class="film-card"">
+            <a class="film-card">
                     <img src="https://image.tmdb.org/t/p/w500/${
                       el.poster_path
                     }" 
