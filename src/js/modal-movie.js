@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
+// import { URL } from './search-api.js';
 import { hidePreloder, showPreloder } from './preloder.js';
+
 //
 const URL = 'https://api.themoviedb.org/3';
 const GET_MOVIE_INFO = '/movie/';
@@ -10,7 +12,6 @@ const refs = {
   openModalMovieCard: document.querySelector('[modal-movie-open]'),
   closeModalMovieBtn: document.querySelector('[modal-movie-close]'),
   backdrop: document.querySelector('.js-modalMovie__backdrop'),
-
   targetMovie: document.querySelector('.movie__gallery'),
   modalCard: document.querySelector('.modalMovie__container'),
 };
@@ -21,7 +22,10 @@ refs.backdrop.addEventListener('click', onBackdropClose);
 refs.targetMovie.addEventListener('click', createMovieCard);
 
 // Open/Close Modal
-function onModalMovieOpen() {
+function onModalMovieOpen(e) {
+  if (e.target.nodeName === 'UL') {
+    return;
+  }
   document.body.classList.add('show-modal');
   window.addEventListener('keydown', onEscPress);
 }
@@ -30,17 +34,18 @@ function onModalMovieClose() {
   document.body.classList.remove('show-modal');
   window.removeEventListener('keydown', onEscPress);
   window.postMessage('closeModal');
+  setTimeout(() => {
+    refs.modalCard.innerHTML = '';
+  }, 500);
 }
 
 function onBackdropClose(e) {
   if (e.currentTarget === e.target) {
-    // document.body.classList.remove('show-modal')
     onModalMovieClose();
   }
 }
 
 function onEscPress(e) {
-  // console.log(e.code);
   if (e.code === 'Escape') {
     onModalMovieClose();
   }
@@ -48,14 +53,16 @@ function onEscPress(e) {
 // Create movieCard
 
 function createMovieCard(e) {
-  // if (e.target.closest('li.movie__gallery--items'));
   const idMovie = e.target.closest('li');
-
-  MovieApiById(idMovie.id);
-  // createMovieCardById(idMovie);
+  if (idMovie) {
+    MovieApiById(idMovie.id);
+  }
 }
 
 async function MovieApiById(id) {
+  if (!id) {
+    return;
+  }
   try {
     showPreloder();
     const movieInfo = await axios.get(
@@ -134,7 +141,6 @@ function createMovieCardById(item) {
     id,
     release_date,
   } = item.data;
-  // console.log({ poster_path, title, vote_average, vote_count, popularity, original_title, genres, genre_ids, overview });
   // Movie data for local storage
   const movieData = {
     poster_path,
@@ -145,15 +151,17 @@ function createMovieCardById(item) {
     id,
     release_date,
   };
-
+  const isTrailerIn = +release_date.slice(0, 4) > 2010;
   currentMovie = movieData;
-  // console.log(movieData);
 
   const markup = `
         <div class="movie__poster">
                 <picture class="movie__poster--img">
                     <img src="${URL_GET_IMG}${poster_path}" alt=${title} class="movie-poster__img" />
                 </picture>
+                                <button type="button" class="movie-treiler ${
+                                  !isTrailerIn ? 'visually-hidden' : ''
+                                } " data-id=${id}></button>
             </div>
             <div class="movie__about">
                 <h2 class="movie__about--title">${title}</h2>
@@ -196,8 +204,10 @@ function createMovieCardById(item) {
 
   const addToWatchedRef = document.querySelector('.button-watched');
   const addToQueueRef = document.querySelector('.button-queue');
+  const addPlayTrailer = document.querySelector('.movie-treiler');
   addToWatchedRef.addEventListener('click', clickOnWatched);
   addToQueueRef.addEventListener('click', clickOnQueue);
+  addPlayTrailer.addEventListener('click', clickOnPlay);
   function changeBgColorButton() {
     const chekMovieId2 = watchedDb.some(movie => movie.id === currentMovie.id);
     if (!chekMovieId2) {
@@ -264,4 +274,36 @@ function changeTextButtonQueue() {
   return textButton;
 }
 
+// =========================================================================================================================
+// =========================================================================================================================
+
+function clickOnPlay(e) {
+  const idMovie = e.target.dataset.id;
+  getTrailer(idMovie).then(({ results }) => {
+    let key = results[0].key;
+    renderYoutubeFrame(key);
+  });
+}
+
+async function getTrailer(id) {
+  try {
+    const searchParams = new URLSearchParams({
+      api_key: API_KEY_TMDb,
+      language: 'en',
+    });
+    const url = `https://api.themoviedb.org/3/movie/${id}/videos?${searchParams}`;
+    const response = await axios.get(url);
+    if (!response) {
+      throw new Error('Something goes wrong');
+    }
+    return response.data;
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+const renderYoutubeFrame = movieKey => {
+  refs.modalCard.innerHTML = `<iframe allowfullscreen frameborder="0" src="https://www.youtube.com/embed/${movieKey}?autoplay=1" 
+  class="iframe"></iframe>`;
+};
 // =========================================================================================================================

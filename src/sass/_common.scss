@@ -26,7 +26,8 @@ body {
 
 main {
   flex: 1 1 auto;
-  margin: 0 auto;
+  margin: 0;
+  // margin: 0 auto;
 }
 
 h1,
@@ -63,7 +64,13 @@ button {
   border-width: 0;
 }
 section {
-  padding: 60px 20px;
+  padding: 20px 20px;
+  @media screen and(min-width: 768px) {
+    padding: 60px 32px;
+  }
+  @media screen and(min-width: 1024px) {
+    padding: 60px 20px;
+  }
 }
 
 .container {
