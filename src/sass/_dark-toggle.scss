@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700&display=swap');
+
+// Shortcuts
+// for themed variables
+$black: #212121;
+$background: 'background';
+$color: 'color';
+$footer: 'footer-bg';
+$pagination: 'pagination';
+$color: 'color';
+$button: 'button';
+$text: 'text';
+$shadow: 'shadow';
+
+// Theme Variables
+$themes: (
+  default: (
+    background: $color-white,
+    footer-bg: $color-bg,
+    button: $black,
+    pagination: $color-white,
+    text: $black,
+    color: $black,
+    shadow: 2px 2px 3px 3px rgba(231, 231, 231, 0.627),
+  ),
+  dark: (
+    color: $color-white,
+    background: $black,
+    footer-bg: $black,
+    pagination: $color-grey2,
+    shadow: 2px 2px 3px 3px rgba(62, 62, 62, 0.627),
+    button: $color-accent,
+    text: $color-accent,
+  ),
+);
+
+// The themed mixin iterates through all of your $themes
+// and for that theme defines a global Sass map called $theme-map
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+// It takes the blurb of code you entered and outputs it with
+// the theme-defined values in the place where you used the theme function.
+@function theme($key) {
+  @return map-get($theme-map, $key);
+}
+
+body {
+  @include themed() {
+    background: theme($background);
+  }
+}
+.modalMovie {
+  @include themed() {
+    background: theme($background);
+    color: theme($color);
+    box-shadow: theme($shadow);
+  }
+}
+footer {
+  @include themed() {
+    background: theme($footer);
+  }
+}
+//////////////////////////////////////////////////////////////
+.tui-pagination .tui-prev,
+.tui-pagination .tui-next,
+.tui-pagination .tui-prev-is-ellip,
+.tui-pagination .tui-next-is-ellip {
+  @include themed() {
+    background: theme($pagination);
+  }
+}
+.info__title,
+.my-lib__title,
+.movie__about--subtitle,
+.movie__table-data,
+.movie__table-data,
+.tui-pagination .tui-page-btn {
+  @include themed() {
+    color: theme($color);
+  }
+}
+
+li.gallery__item {
+  @include themed() {
+    box-shadow: theme($shadow);
+  }
+}
+.scroll-to-top {
+  @include themed() {
+    color: theme($pagination);
+  }
+}
+.modal__icon-close {
+  @include themed() {
+    fill: theme($color);
+  }
+}
+
+img {
+  border-radius: 100%;
+  width: 150px;
+}
+
+h1 {
+  font: {
+    size: 25px;
+    weight: 500;
+  }
+  letter-spacing: -0.05em;
+  margin: 10px 0 50px;
+  a {
+    text-decoration: none;
+    transition: color 0.2s ease-out;
+    @include themed() {
+      color: theme($text);
+    }
+  }
+}
+
+.toggle {
+  position: absolute;
+  bottom: 10px;
+  right: 24px;
+
+  &__input {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    &:checked + label {
+      @include themed() {
+        background: theme($button);
+      }
+      &:after {
+        left: calc(100% - 5px);
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    text-indent: -9999px;
+    width: 55px;
+    height: 30px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    position: relative;
+    @include themed() {
+      background: theme($button);
+    }
+    &:after {
+      content: '';
+      background: #fff;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      left: 4px;
+      transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+    }
+  }
+}

@@ -1,4 +1,6 @@
 import './js/blinking-heart.js';
+import './js/dark-mode';
+
 import { hidePreloder, showPreloder } from './js/preloder';
 import { scrollUp } from './js/scrollToTop.js';
 
