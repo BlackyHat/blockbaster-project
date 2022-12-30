@@ -16,7 +16,6 @@ function scrollToEnd() {
 }
 
 export const scrollUp = throttle(() => {
-  console.log(window.scrollY);
   const buttonUpRef = document.querySelector('.scroll-to-top');
   buttonUpRef.addEventListener('click', scrollToEnd);
 

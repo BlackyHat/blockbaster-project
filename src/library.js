@@ -1,6 +1,9 @@
 import './js/blinking-heart.js';
 import { hidePreloder, showPreloder } from './js/preloder';
+import { scrollUp } from './js/scrollToTop.js';
+
 import './js/modal-movie.js';
+import * as noFilms from './img/no-films.png';
 
 hidePreloder();
 
@@ -67,7 +70,8 @@ function createMarkup(data) {
     .join('');
 
   const movieGallery = document.querySelector('.movie__gallery');
-  movieGallery.innerHTML = markup;
+  const noData = `<p class="my-lib__title">Try to add some movies...</p> <img class="my-lib__poster" src="${noFilms} alt="no film informatin" width="640">`;
+  movieGallery.innerHTML = markup ? markup : noData;
 }
 
 const handleCloseModal = () => {
@@ -82,3 +86,6 @@ const handleCloseModal = () => {
 };
 
 handleCloseModal();
+
+scrollUp();
+window.addEventListener('scroll', scrollUp);

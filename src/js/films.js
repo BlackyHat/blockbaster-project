@@ -5,6 +5,7 @@ import { options } from './pagination';
 import { hidePreloder, showPreloder } from './preloder';
 import { scrollToTop } from './scrollToTop';
 import { renderButtons } from './genres-bar';
+import * as noPoster from '../img/no-poster-available.png';
 const filmsApiService = new FilmsApiService();
 const refs = {
   movieGallery: document.querySelector('.movie__gallery'),
@@ -61,17 +62,21 @@ export function createMarkup(data) {
         genres_ids = el.genres.map(({ name }) => name);
       }
 
+      const genreInfoNormalized =
+        genres_ids.join(', ').length > 0 ? genres_ids.join(', ') : 'No info';
+      const yearInfoNormalized = date.getFullYear()
+        ? date.getFullYear()
+        : 'No info';
+
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card">
-                    <img src="https://image.tmdb.org/t/p/w500/${
-                      el.poster_path
-                    }" 
+                    <img src="${checkPoster(el.poster_path)}" 
                         class="film-poster__img" loading="lazy" />
                 <div class="info"">
                 <p class="info__title">${el.title}</p>
 
                   <p class="info__genres">
-                  ${genres_ids.join(', ')} | ${date.getFullYear()} 
+                  ${genreInfoNormalized} | ${yearInfoNormalized} 
         
                </p>
             </div>
@@ -81,4 +86,11 @@ export function createMarkup(data) {
     .join('');
   //
   refs.movieGallery.innerHTML = markup;
+}
+
+function checkPoster(img) {
+  if (img) {
+    return `https://image.tmdb.org/t/p/w500/${img}`;
+  }
+  return noPoster;
 }
