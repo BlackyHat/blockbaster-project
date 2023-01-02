@@ -63,10 +63,13 @@ export function createMarkup(data) {
       }
 
       const genreInfoNormalized =
-        genres_ids.join(', ').length > 0 ? genres_ids.join(', ') : 'No info';
+        genres_ids.join(', ').length > 0
+          ? genres_ids.join(', ')
+          : 'No genres info';
+      console.log(genreInfoNormalized);
       const yearInfoNormalized = date.getFullYear()
         ? date.getFullYear()
-        : 'No info';
+        : 'No year info';
 
       return `<li class="gallery__item" id="${el.id}">
             <a class="film-card">

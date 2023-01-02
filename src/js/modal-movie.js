@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { API_KEY_TMDb } from './consts/api_key.js';
-// import { URL } from './search-api.js';
 import { hidePreloder, showPreloder } from './preloder.js';
+import * as noPoster from '../img/no-poster-available.png';
 
 //
 const URL = 'https://api.themoviedb.org/3';
@@ -68,7 +68,7 @@ async function MovieApiById(id) {
     const movieInfo = await axios.get(
       `${URL}${GET_MOVIE_INFO}${id}?api_key=${API_KEY_TMDb}&language=en-US`
     );
-    // console.log(movieInfo.data);
+    console.log(movieInfo);
     createMovieCardById(movieInfo);
     hidePreloder();
   } catch (error) {
@@ -153,11 +153,15 @@ function createMovieCardById(item) {
   };
   const isTrailerIn = +release_date.slice(0, 4) > 2010;
   currentMovie = movieData;
+  const genreInfoNormalized =
+    genres.length > 0 ? genres[0].name : 'No genres info';
 
   const markup = `
         <div class="movie__poster">
                 <picture class="movie__poster--img">
-                    <img src="${URL_GET_IMG}${poster_path}" alt=${title} class="movie-poster__img" />
+                    <img src="${checkPoster(
+                      poster_path
+                    )}" alt=${title} class="movie-poster__img" />
                 </picture>
                                 <button type="button" class="movie-treiler ${
                                   !isTrailerIn ? 'visually-hidden' : ''
@@ -186,12 +190,13 @@ function createMovieCardById(item) {
                     </tr>
                     <tr>
                         <td class="movie__table-menu">Genre</td>
-                        <td class="movie__table-genres">${genres[0].name}</td>
-                    </tr>
+                        <td class="movie__table-genres">${genreInfoNormalized}</td></tr>
                 </table>
                 <div>
                     <h3 class="movie__about--subtitle">About</h3>
-                    <p class="modal__about--discription">${overview}</p>
+                    <p class="modal__about--discription">${
+                      overview || 'No overview ino'
+                    }</p>
                 </div>
                 <div class="modal__buttons">
                     <button class="modal__button button-watched" type="button">${changeTextButtonWatched()}</button>
@@ -307,3 +312,9 @@ const renderYoutubeFrame = movieKey => {
   class="iframe"></iframe>`;
 };
 // =========================================================================================================================
+function checkPoster(img) {
+  if (img) {
+    return `https://image.tmdb.org/t/p/w500/${img}`;
+  }
+  return noPoster;
+}
